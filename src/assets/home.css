@@ -1,0 +1,216 @@
+.home-container {
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+}
+
+.main-nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.left-content {
+  text-align: left;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.left-content h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.left-content p {
+  font-size: 2.0em;
+  font-weight: bold;
+  text-align: center;
+  max-width: 500px;
+}
+
+.right-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.invoice-carousel {
+  width: 100%;
+  max-width: 450px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  height: 650px;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.language-switcher img {
+  width: 30px;
+  height: auto;
+  margin-left: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.language-switcher img.active {
+  border-color: #fff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .left-content {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .left-content h1 {
+    font-size: 1.8em;
+  }
+  
+  .left-content p {
+    font-size: 1.2em;
+  }
+  
+  .invoice-carousel {
+    max-width: 100%;
+    height: 400px;
+  }
+}
+
+/* New styles for customer section */
+.customer-section {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: auto;
+  color: white;
+}
+
+.customer-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.customer-testimonials {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.customer-testimonials p {
+  margin: 10px 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.customer-testimonials strong {
+  color: #ffd700;
+}
+
+/* New styles for signup form */
+.signup-form {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.signup-form form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  color: black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form h2 {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.signup-form p {
+  font-size: 0.8em;
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+.signup-form button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signup-form button:hover {
+  background-color: #218838;
+}

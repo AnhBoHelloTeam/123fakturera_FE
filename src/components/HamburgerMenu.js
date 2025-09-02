@@ -16,10 +16,11 @@ import { useState } from 'react';
            </button>
            <nav className={`menu ${isOpen ? 'open' : ''}`}>
              <ul>
-               <li><a href="#">Home</a></li>
-               <li><a href="#">About</a></li>
-               <li><a href="#">Services</a></li>
-               <li><a href="#">Contact</a></li>
+               <li><a href="/">Home</a></li>
+               <li><a href="/Order">Order</a></li>
+               <li><a href="Our-Customers">Our Customers</a></li>
+               <li><a href="About-us">About us</a></li>
+               <li><a href="Contact-Us">Contact Us</a></li>
              </ul>
            </nav>
          </div>

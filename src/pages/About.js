@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import HamburgerMenu from '../components/HamburgerMenu';
-import TermsContent from '../components/TermsContent';
 
-function Terms({ language, setLanguage }) {
+function About({ language, setLanguage }) {
   const [title, setTitle] = useState('');
   const [button, setButton] = useState('');
   const [context, setContext] = useState('');
@@ -11,29 +10,24 @@ function Terms({ language, setLanguage }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTerms = async () => {
+    const fetchAbout = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/terms?language=${language}`);
-        if (response.data && response.data.title && response.data.button && response.data.context) {
-          setTitle(response.data.title);
-          setButton(response.data.button);
-          setContext(response.data.context);
-        } else {
-          throw new Error('Invalid response data');
-        }
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/about?language=${language}`);
+        setTitle(response.data.title || 'About Us');
+        setButton(response.data.button || 'Go to Contact');
+        setContext(response.data.context || '<p>Learn more about 123 Fakturera and our mission.</p>');
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching terms:', err); // Log lỗi để debug
-        setError('Failed to load terms.');
+        setError('Failed to load about.');
         setLoading(false);
       }
     };
-    fetchTerms();
+    fetchAbout();
   }, [language]);
 
-  const handleClose = () => {
-    window.history.back();
+  const handleNavigate = () => {
+    window.location.href = '/contact'; // Chuyển đến trang Contact
   };
 
   return (
@@ -43,13 +37,13 @@ function Terms({ language, setLanguage }) {
         <HamburgerMenu />
         <div className="language-switcher">
           <img
-            src="https://storage.123fakturere.no/public/flags/GB.png"
+            src="https://storage.123fakturera.no/public/flags/GB.png"
             alt="English"
             className={language === 'en' ? 'flag active' : 'flag'}
             onClick={() => setLanguage('en')}
           />
           <img
-            src="https://storage.123fakturere.no/public/flags/SE.png"
+            src="https://storage.123fakturera.no/public/flags/SE.png"
             alt="Swedish"
             className={language === 'sv' ? 'flag active' : 'flag'}
             onClick={() => setLanguage('sv')}
@@ -64,13 +58,8 @@ function Terms({ language, setLanguage }) {
         ) : (
           <div className="terms-main">
             <div className="terms-title">{title}</div>
-
-            <button className="terms-button" onClick={handleClose}>
-              {button}
-            </button>
-
-            <TermsContent content={context} />
-            <button className="terms-button" onClick={handleClose}>
+            <div className="terms-content" dangerouslySetInnerHTML={{ __html: context }} />
+            <button className="terms-button" onClick={handleNavigate}>
               {button}
             </button>
           </div>
@@ -80,4 +69,4 @@ function Terms({ language, setLanguage }) {
   );
 }
 
-export default Terms;
+export default About;
