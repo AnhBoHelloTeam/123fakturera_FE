@@ -53,9 +53,10 @@ function Home({ language, setLanguage }) {
           </div>
         </div>
       </main>
+
       <div className="signup-form">
-        <h2>Använd och Prova Gratis</h2>
         <form>
+          <h2>Använd och Prova Gratis</h2>
           <input type="text" placeholder="Företags namn" />
           <input type="text" placeholder="Kontakt person" />
           <input type="text" placeholder="Adress" />
@@ -66,6 +67,14 @@ function Home({ language, setLanguage }) {
           <p>Klicka Faktura Nu för att fakturera och för att godkänna villkoren, och din första faktura normalt klar för att skickas inom 5-10 minuter.</p>
           <button type="submit">Faktura Nu</button>
         </form>
+      </div>
+
+      <div className="customer-section">
+        <h2>Våra Kunder</h2>
+        <div className="customer-testimonials">
+          <p>"123fakturera är den mest användarvänliga faktureringslösningen jag någonsin har stött på. Det har förenklat min verksamhet avsevärt." - <strong>Anna S.</strong></p>
+          <p>"Fantastiskt! Det är så enkelt att skicka fakturor med deras program. Minns när jag var tvungen att göra det för hand och att det tog flera timmar." - <strong>Johan P.</strong></p>
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,27 @@
+/* home.css */
+
 .home-container {
   background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  /* Giữ hình nền cố định khi cuộn */
+  background-attachment: fixed; 
+  /* Đảm bảo chiều cao tối thiểu là 100% của màn hình */
+  min-height: 100vh; 
   width: 100vw;
   display: flex;
   flex-direction: column;
   color: white;
   font-family: Arial, sans-serif;
+}
+
+/* Đảm bảo body và html cũng chiếm trọn màn hình */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -139,7 +152,6 @@
 .customer-section {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.7);
-  margin-top: auto;
   color: white;
 }
 
@@ -168,7 +180,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  margin-top: auto;
+  color: black;
 }
 
 .signup-form form {
@@ -177,7 +189,6 @@
   border-radius: 10px;
   width: 300px;
   text-align: center;
-  color: black;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
