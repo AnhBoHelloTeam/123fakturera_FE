@@ -1,0 +1,363 @@
+.mybusiness-container {
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 100px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.language-switcher {
+    display: flex;
+    gap: 10px;
+}
+
+.logo {
+    width: 50px;
+    cursor: pointer;
+}
+
+.flag {
+    width: 30px;
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 3px;
+}
+
+.flag.active {
+    opacity: 1;
+    border: 2px solid #fff;
+}
+
+.hamburger-menu {
+    display: none;
+    position: relative;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger-button span {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.menu.open {
+    display: block;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mybusiness-content-root {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.back-mybusiness {
+    background: #fff;
+    width: 750px;
+    border-radius: 40px;
+    margin: 0 auto;
+    transition: width 600ms ease-in-out;
+    color: white;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    font-weight: 500;
+    margin-top: max(20px, calc(50svh - 380px));
+    margin-bottom: 20px;
+}
+
+.mybusiness-heading {
+    font-size: 2.5em;
+    color: #ff0000;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+.mybusiness-info {
+    width: 75%;
+    margin: auto;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+}
+
+.mybusiness-info p {
+    margin: 10px 0;
+}
+
+.error-span {
+    color: red;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    display: block;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 1023px) {
+    .header {
+        padding: 10px 20px;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hamburger-menu {
+        display: block;
+    }
+    .header-left .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 674px) {
+    html,
+    body {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        padding-bottom: 0px !important;
+    }
+    main {
+        width: 100%;
+        display: flex;
+        height: inherit;
+        flex: 1;
+    }
+    .mybusiness-container,
+    .mybusiness-content-root {
+        width: 100%;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+    .back-mybusiness {
+        margin: 0px;
+        max-width: 100%;
+    }
+    .mybusiness-heading {
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 675px) and (max-width: 899px) {
+    .back-mybusiness {
+        max-width: 90%;
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 80%;
+    }
+    .mybusiness-content-root {
+        width: 100%;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 999px) {
+    .back-mybusiness {
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 680px;
+    }
+    .mybusiness-heading {
+        font-size: 44px;
+    }
+    .mybusiness-info {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1269px) and (orientation: landscape) {
+    .back-mybusiness {
+        width: 675px;
+        margin-top: max(20px, calc(50svh - 221px - 80px));
+        margin-bottom: max(20px, calc(50svh - 221px));
+    }
+    .mybusiness-heading {
+        font-size: 40px;
+    }
+    .mybusiness-info {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1270px) and (max-width: 1389px) and (orientation: landscape) {
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 196px - 69px));
+        padding-top: 1.5rem;
+        width: 520px;
+        padding-bottom: 2.5rem;
+        margin-bottom: max(40px, calc(50svh - 196px));
+    }
+    .mybusiness-info {
+        width: 80%;
+    }
+    .mybusiness-heading {
+        font-size: 38px;
+    }
+    .mybusiness-info {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1390px) and (max-width: 1589px) and (orientation: landscape) {
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 203px - 69px - 21px));
+        padding-top: 1.5rem;
+        width: 540px;
+        padding-bottom: 2.5rem;
+        margin-bottom: 0px;
+    }
+    .mybusiness-info {
+        width: 80%;
+    }
+    .mybusiness-heading {
+        font-size: 40px;
+    }
+    .mybusiness-info {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1590px) and (max-width: 1909px) and (orientation: landscape) {
+    .mybusiness-heading {
+        font-size: 44px;
+    }
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 223px - 69px - 21px));
+        width: 570px;
+        margin-bottom: 0px;
+    }
+    .mybusiness-info {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1910px) and (max-width: 2549px) and (orientation: landscape) {
+    .mybusiness-heading {
+        font-size: 46px;
+    }
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 235px - 23px - 69px));
+        margin-bottom: 30px;
+        width: 660px;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        padding-right: 5rem;
+        padding-left: 5rem;
+    }
+    .mybusiness-info {
+        width: 100%;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 2550px) and (orientation: landscape) {
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 243px - 24px - 87px));
+        margin-bottom: 20px;
+        width: 700px;
+    }
+    .mybusiness-heading {
+        font-size: 48px;
+    }
+    .mybusiness-info {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 3430px) and (orientation: landscape) {
+    .back-mybusiness {
+        margin-top: max(40px, calc(50svh - 313px - 102px - 29px));
+        margin-bottom: 20px;
+        width: 1000px;
+    }
+    .mybusiness-heading {
+        font-size: 56px;
+        padding-bottom: 0px;
+    }
+    .mybusiness-info {
+        font-size: 28px;
+    }
+}

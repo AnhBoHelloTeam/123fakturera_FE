@@ -7,7 +7,6 @@ function HamburgerMenu({ language }) {
     setIsOpen(!isOpen);
   };
 
-  // Danh sách liên kết giống trong Terms.js
   const headerLinks = {
     sv: [
       { text: 'Hem', href: '/' },

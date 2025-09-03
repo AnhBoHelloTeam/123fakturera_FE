@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import TermsContent from '../components/TermsContent';
 import HamburgerMenu from '../components/HamburgerMenu';
 
 function Terms({ language, setLanguage }) {
+  const navigate = useNavigate(); // Initialize navigate
   const [title, setTitle] = useState('');
   const [button, setButton] = useState('');
   const [context, setContext] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Đối tượng chứa văn bản cho header
   const headerLinks = {
     sv: [
       { text: 'Hem', href: '/' },
@@ -58,7 +59,13 @@ function Terms({ language, setLanguage }) {
     <div className="terms-container" style={{ backgroundImage: `url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)` }}>
       <header className="header">
         <div className="header-left">
-          <img src="https://storage.123fakturera.se/public/icons/diamond.png" alt="Logo" className="logo" />
+          <img
+            src="https://storage.123fakturera.se/public/icons/diamond.png"
+            alt="Logo"
+            className="logo"
+            onClick={() => navigate('/login')} // Navigate to /login on click
+            style={{ cursor: 'pointer' }}
+          />
           <HamburgerMenu language={language} />
         </div>
         <div className="header-right">
