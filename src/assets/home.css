@@ -1,39 +1,116 @@
-/* home.css */
+/* Import Nunito Sans font to match HTML */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&display=swap');
 
-.home-container {
-  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Giữ hình nền cố định khi cuộn */
-  background-attachment: fixed; 
-  /* Đảm bảo chiều cao tối thiểu là 100% của màn hình */
-  min-height: 100vh; 
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-/* Đảm bảo body và html cũng chiếm trọn màn hình */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+.home-container {
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Nunito Sans', Arial, sans-serif;
 }
 
 .header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 2vw 5vw; /* Sử dụng đơn vị tương đối */
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  margin: 0 1.5vw;
 }
 
 .main-nav a {
   color: white;
-  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(14px, 2vw, 16px); /* Đảm bảo kích thước chữ phù hợp */
+}
+
+.logo {
+  width: clamp(40px, 5vw, 50px); /* Kích thước logo linh hoạt */
+}
+
+.hamburger-menu {
+  display: none;
+  position: relative;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+}
+
+.hamburger-button span {
+  width: 30px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.menu.open {
+  display: block;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 10px 0;
+}
+
+.menu a {
+  color: white;
   text-decoration: none;
   font-weight: bold;
 }
@@ -43,30 +120,30 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 clamp(20px, 5vw, 50px); /* Giữ khoảng cách với lề */
+  flex-wrap: wrap; /* Cho phép wrap trên màn hình nhỏ */
 }
 
 .left-content {
-  text-align: left;
+  text-align: center;
   max-width: 550px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  width: 100%;
 }
 
 .left-content h1 {
-  font-size: 2.5em;
+  font-size: clamp(1.8em, 5vw, 3em); /* Kích thước chữ linh hoạt */
   font-weight: bold;
-  text-align: center;
   margin-bottom: 20px;
 }
 
 .left-content p {
-  font-size: 2.0em;
-  font-weight: bold;
-  text-align: center;
-  max-width: 500px;
+  font-size: clamp(1.2em, 3vw, 2.5em);
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .right-content {
@@ -74,22 +151,23 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  width: 100%;
+  max-width: 450px;
 }
 
 .invoice-carousel {
-  width: 100%;
-  max-width: 450px;
+  width: 450px; /* Kích thước cố định */
+  min-width: 450px; /* Không co giãn khi thu nhỏ */
   overflow: hidden;
   position: relative;
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  height: 650px;
 }
 
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  height: 100%;
+  height: auto; /* Cho phép chiều cao tự điều chỉnh theo hình ảnh */
 }
 
 .carousel-item {
@@ -98,130 +176,439 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  padding: 0;
 }
 
 .carousel-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto; /* Đảm bảo giữ tỷ lệ khung hình */
+  object-fit: contain; /* Giữ nguyên tỷ lệ khung hình gốc */
   display: block;
   border-radius: 8px;
 }
 
-.language-switcher img {
-  width: 30px;
-  height: auto;
-  margin-left: 10px;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.language-switcher img.active {
-  border-color: #fff;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .main-content {
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .left-content {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .left-content h1 {
-    font-size: 1.8em;
-  }
-  
-  .left-content p {
-    font-size: 1.2em;
-  }
-  
-  .invoice-carousel {
-    max-width: 100%;
-    height: 400px;
-  }
-}
-
-/* New styles for customer section */
-.customer-section {
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-}
-
-.customer-section h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.customer-testimonials {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.customer-testimonials p {
-  margin: 10px 0;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-.customer-testimonials strong {
-  color: #ffd700;
-}
-
-/* New styles for signup form */
 .signup-form {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  color: black;
+  padding: clamp(10px, 3vw, 20px);
+  color: rgb(76, 71, 71);
 }
 
 .signup-form form {
   background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 30px;
+  width: 100%;
+  max-width: 550px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
 .signup-form h2 {
   color: red;
-  margin-bottom: 10px;
+  font-size: clamp(24px, 5vw, 40px);
+  margin-top: -5px;
+  margin-bottom: 20px;
+  padding: 0 20px;
 }
 
 .signup-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  width: calc(100% - 40px);
+  padding: clamp(10px, 2vw, 15px);
+  margin: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 25px;
   box-sizing: border-box;
 }
 
 .signup-form p {
-  font-size: 0.8em;
-  margin: 10px 0;
-  line-height: 1.4;
+  font-size: clamp(0.9em, 2vw, 1em);
+  margin: 5px 0;
+  line-height: 1.5;
+  text-align: start;
+  padding: 5px 20px;
 }
 
 .signup-form button {
   background-color: #28a745;
   color: white;
-  padding: 10px 20px;
+  padding: clamp(10px, 2vw, 12px) 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
-  width: 100%;
+  width: calc(50% - 20px); /* Giảm width để vừa hơn */
+  font-size: clamp(0.9em, 2vw, 1em);
+  margin: 0 auto;
 }
 
-.signup-form button:hover {
-  background-color: #218838;
+.signup-form input::placeholder {
+  padding-left: 5px;
+}
+
+/* Testimonial Section */
+/* Testimonial Section */
+.background-section {
+  background: linear-gradient(to right, #4a90e2, #5a4ae2);
+  padding: clamp(40px, 6vw, 60px) 0;
+  color: white;
+  text-align: center;
+}
+
+.stars-center {
+  width: clamp(60px, 10vw, 88px);
+  margin: 0 auto 20px;
+}
+
+.section-header {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.section-header1 {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+}
+
+.heading-accent {
+  font-size: clamp(24px, 4vw, 40px);
+  color: white;
+}
+
+.heading-accent1 {
+  font-size: clamp(24px, 4vw, 40px);
+  color: black;
+}
+
+.heading-accent2 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: black;
+}
+
+.full-width-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-carousel-inner {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-item {
+  min-width: 100%;
+  padding: 0 clamp(10%, 15vw, 20%);
+  box-sizing: border-box;
+  max-width: 33.33%; /* Chiếm 1/3 chiều rộng màn hình */
+  margin-left: auto; /* Căn giữa */
+  margin-right: auto; /* Căn giữa */
+}
+
+.review-text {
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.review-author {
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.white-bold-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.white-bold-link:hover {
+  text-decoration: underline;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: clamp(18px, 3vw, 24px);
+  padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 15px);
+  z-index: 10;
+}
+
+.w-slider-arrow-left {
+  left: clamp(10px, 2vw, 20px);
+}
+
+.w-slider-arrow-right {
+  right: clamp(10px, 2vw, 20px);
+}
+
+.w-icon-slider-left::before,
+.w-icon-slider-right::before {
+  content: '';
+  display: block;
+  width: clamp(15px, 3vw, 20px);
+  height: clamp(15px, 3vw, 20px);
+  background: url('https://www.123fakturera.se/images/arrow-left.svg') no-repeat center;
+  background-size: contain;
+}
+
+.w-icon-slider-right::before {
+  background: url('https://www.123fakturera.se/images/arrow-right.svg') no-repeat center;
+}
+
+.slide-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.slide-nav div {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.slide-nav div.active {
+  background: white;
+}
+
+/* Customer Stats Section */
+.white-section {
+  padding: clamp(30px, 6vw, 60px) clamp(30px, 5vw, 50px); /* Giữ khoảng cách với lề */
+  background: #fff;
+  border: 2px solid #e0e0e0; /* Thêm viền mỏng */
+  border-radius: 30px; /* Bo góc nhẹ */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ để nổi bật */
+}
+
+.section-description {
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center; /* Căn giữa nội dung mô tả */
+  max-width: 50%; /* Chiếm 2/4 (50%) chiều rộng màn hình */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.feature-cards-v2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cột ở full-size */
+  gap: 40px;
+  justify-content: center;
+  padding: 0; /* Loại bỏ padding riêng, dùng padding của .white-section */
+}
+
+.feature-card-v2 {
+  background: #f9f9f9;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card-v2 h5 {
+  font-size: clamp(16px, 2.5vw, 18px);
+  font-weight: 600;
+  margin: 0;
+  color: black;
+}
+
+.disclaimer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.disclaimer a {
+  color: #ff4d4d;
+  text-decoration: none;
+}
+
+.disclaimer a:hover {
+  text-decoration: underline;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 2vw, 20px);
+  margin-top: 20px;
+}
+
+.social-media img {
+  width: clamp(25px, 4vw, 30px);
+  height: auto;
+}
+
+/* Footer */
+.footer-section-v3 {
+  background: #333;
+  color: white;
+  padding: clamp(30px, 5vw, 40px) 0;
+}
+
+.footer-v3 {
+  text-align: center;
+}
+
+.footer-v3-nav {
+  margin-bottom: 20px;
+}
+
+.footer-v3-nav-link {
+  color: white;
+  text-decoration: none;
+  margin: 0 clamp(10px, 2vw, 15px);
+  font-weight: 700;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.footer-v3-nav-link:hover {
+  text-decoration: underline;
+}
+
+.footer-v3-copyright {
+  font-size: clamp(12px, 1.8vw, 14px);
+}
+
+/* Animation */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.feature-card-v2[data-ix="fade-up-1"] {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+/* Media Queries */
+@media (max-width: 1023px) {
+  .main-nav {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  .header {
+    padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    padding: clamp(10px, 3vw, 20px);
+  }
+  .left-content {
+    margin-bottom: 30px;
+  }
+  .left-content h1 {
+    font-size: clamp(1.5em, 4vw, 1.8em);
+  }
+  .left-content p {
+    font-size: clamp(1em, 3vw, 1.2em);
+  }
+  .invoice-carousel {
+    width: 450px; /* Giữ kích thước cố định */
+    min-width: 450px; /* Không co giãn */
+    height: auto;
+  }
+  .carousel-item img {
+    object-fit: contain; /* Giữ tỷ lệ khung hình */
+    width: 100%;
+    height: auto;
+  }
+  .feature-cards-v2 {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột khi thu nhỏ */
+  }
+  .section-description {
+    max-width: 50%; /* Giữ 2/4 chiều rộng */
+  }
+  .white-section {
+    padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px); /* Giảm padding khi thu nhỏ */
+  }
+  .testimonial-item {
+    padding: 0 clamp(5%, 10vw, 10%);
+  }
+  .signup-form {
+    padding: clamp(10px, 2vw, 20px);
+  }
+  .signup-form input {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: clamp(5px, 2vw, 10px) clamp(10px, 3vw, 15px);
+  }
+  .logo {
+    width: clamp(30px, 8vw, 40px);
+  }
+  .left-content h1 {
+    font-size: clamp(1.2em, 5vw, 1.5em);
+  }
+  .left-content p {
+    font-size: clamp(0.9em, 3.5vw, 1em);
+  }
+  .invoice-carousel {
+    width: 450px; /* Giữ kích thước cố định */
+    min-width: 450px; /* Không co giãn */
+    height: auto;
+  }
+  .carousel-item img {
+    object-fit: contain; /* Giữ tỷ lệ khung hình */
+    width: 100%;
+    height: auto;
+  }
+  .feature-cards-v2 {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột khi thu nhỏ */
+  }
+  .section-description {
+    max-width: 50%; /* Giữ 2/4 chiều rộng */
+  }
+  .white-section {
+    padding: clamp(20px, 5vw, 40px) clamp(10px, 3vw, 15px); /* Giảm padding hơn nữa khi thu nhỏ */
+  }
+  .signup-form form {
+    padding: clamp(10px, 2vw, 15px);
+  }
+  .signup-form h2 {
+    font-size: clamp(20px, 6vw, 24px);
+  }
+  .signup-form button {
+    width: calc(100% - 20px);
+  }
+  .feature-cards-v2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-item {
+    padding: 0 5%;
+  }
+  .arrow {
+    font-size: clamp(16px, 4vw, 18px);
+    padding: clamp(6px, 1.5vw, 8px);
+  }
 }

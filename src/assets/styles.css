@@ -11,6 +11,7 @@ body {
 .terms-container {
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
   color: #fff;
   padding: 20px;
@@ -21,16 +22,44 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 100px;
-  
 }
 
-.logo {
-  width: 50px;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .language-switcher {
   display: flex;
   gap: 10px;
+}
+
+.logo {
+  width: 50px;
 }
 
 .flag {
@@ -45,6 +74,7 @@ body {
 }
 
 .hamburger-menu {
+  display: none;
   position: relative;
 }
 
@@ -68,10 +98,11 @@ body {
   display: none;
   position: absolute;
   top: 40px;
-  right: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.8);
   padding: 10px;
   border-radius: 5px;
+  z-index: 1000;
 }
 
 .menu.open {
@@ -91,6 +122,7 @@ body {
 .menu a {
   color: #fff;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .terms-main {
@@ -110,9 +142,10 @@ body {
   color: #615c5c;
   padding: 25px;
   border-radius: 25px;
-  margin: 12px auto 20px auto; /* Đã thêm margin top/bottom 12px và căn giữa */
-  text-align: center; /* Căn giữa nội dung */
-  max-width: 85%; /* Giới hạn chiều rộng */5}
+  margin: 12px auto 20px auto;
+  text-align: center;
+  max-width: 85%;
+}
 
 .terms-button {
   display: block;
@@ -131,48 +164,25 @@ body {
   background-color: #218838;
 }
 
-/* Pricelist Styles */
-.pricelist-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.pricelist-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.pricelist-table th,
-.pricelist-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-.pricelist-table th {
-  background: #f4f4f4;
-  font-weight: bold;
-}
-
-.pricelist-table input {
-  width: 100%;
-  border: none;
-  padding: 5px;
-  background: transparent;
-}
-
-.pricelist-table input:focus {
-  outline: none;
-  background: #f9f9f9;
-}
-
 /* Responsive Styles */
-@media (max-width: 1024px) {
-  .desktop-only {
+@media (min-width: 1024px) {
+  .hamburger-menu {
     display: none;
+  }
+  .nav-links {
+    display: block;
+  }
+}
+
+@media (max-width: 1023px) {
+  .nav-links {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  .header-left .logo {
+    display: none; /* Ẩn logo trên mobile/tablet */
   }
 }
 
@@ -182,11 +192,12 @@ body {
   }
 
   .header {
-    padding: 10px;
+    padding: 10px 20px;
+    flex-wrap: wrap;
   }
 
-  .logo {
-    width: 40px;
+  .header-right {
+    gap: 10px;
   }
 
   .flag {
@@ -201,18 +212,12 @@ body {
   .terms-content {
     padding: 15px;
     border-radius: 8px;
-    max-width: 95%; /* Điều chỉnh cho màn hình nhỏ hơn */
+    max-width: 95%;
   }
 
   .terms-button {
     font-size: 14px;
     padding: 8px 16px;
-  }
-
-  .pricelist-table th,
-  .pricelist-table td {
-    padding: 8px;
-    font-size: 14px;
   }
 }
 
@@ -233,21 +238,11 @@ body {
   .terms-content {
     padding: 10px;
     border-radius: 6px;
-    max-width: 100%; /* Chiều rộng đầy đủ trên màn hình nhỏ */
+    max-width: 100%;
   }
 
   .terms-button {
     font-size: 12px;
     padding: 6px 12px;
-  }
-
-  .pricelist-table th,
-  .pricelist-table td {
-    padding: 5px;
-    font-size: 12px;
-  }
-
-  .tablet-up {
-    display: none;
   }
 }
