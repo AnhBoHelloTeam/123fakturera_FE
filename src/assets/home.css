@@ -9,7 +9,7 @@
   top: 0;
   z-index: 10;
   width: 100%;
-  max-width: 1600px; /* Giới hạn cho màn hình lớn */
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .logo {
-  width: clamp(25px, 4vw, 35px); /* Thu nhỏ logo để vừa hơn */
+  width: clamp(25px, 4vw, 35px);
 }
 
 .hamburger-menu {
@@ -96,9 +96,9 @@
   padding: clamp(8px, 1.5vw, 10px);
   border-radius: 5px;
   z-index: 1000;
-  min-width: clamp(140px, 35vw, 160px); /* Thu nhỏ min-width */
+  min-width: clamp(140px, 35vw, 160px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Ngăn tràn nội dung menu */
+  overflow: hidden;
 }
 
 .menu.open {
@@ -124,7 +124,7 @@
   display: block;
   padding: clamp(4px, 1vw, 6px) clamp(8px, 1.5vw, 10px);
   transition: color 0.3s;
-  overflow-wrap: break-word; /* Ngăn link dài tràn */
+  overflow-wrap: break-word;
 }
 
 .menu a:hover {
@@ -145,7 +145,7 @@
 
 .left-content {
   text-align: center;
-  max-width: clamp(350px, 45%, 450px); /* Thu nhỏ để vừa hơn */
+  max-width: clamp(350px, 45%, 450px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,17 +154,19 @@
 }
 
 .left-content h1 {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-size: clamp(2.5rem, 3vw, 2.5rem);
   font-weight: bold;
   margin-bottom: clamp(8px, 1.2vw, 12px);
-  overflow-wrap: break-word; /* Ngăn tiêu đề dài tràn */
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .left-content p {
-  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  font-size: clamp(0.85rem, 2.5vw, 2rem);
   max-width: 95%;
   margin: 0 auto;
-  overflow-wrap: break-word; /* Ngăn văn bản dài tràn */
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .right-content {
@@ -173,13 +175,13 @@
   align-items: center;
   padding: clamp(8px, 1.5vw, 12px);
   width: 100%;
-  max-width: clamp(280px, 45%, 360px); /* Thu nhỏ để vừa hơn */
+  max-width: clamp(280px, 45%, 360px);
 }
 
 .invoice-carousel {
   width: 100%;
-  max-width: clamp(280px, 90%, 360px); /* Thu nhỏ max-width */
-  overflow: hidden; /* Ngăn tràn carousel */
+  max-width: clamp(280px, 90%, 360px);
+  overflow: hidden;
   position: relative;
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -223,7 +225,7 @@
   padding: clamp(8px, 1.5vw, 12px);
   border-radius: 30px;
   width: 100%;
-  max-width: clamp(320px, 90%, 400px); /* Thu nhỏ max-width */
+  max-width: 600px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
@@ -231,11 +233,11 @@
 
 .signup-form h2 {
   color: red;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 2rem);
   margin-top: 0;
   margin-bottom: clamp(6px, 1vw, 10px);
   padding: 0 clamp(8px, 1.5vw, 12px);
-  overflow-wrap: break-word; /* Ngăn tiêu đề dài tràn */
+  overflow-wrap: break-word;
 }
 
 .signup-form input {
@@ -248,12 +250,12 @@
 }
 
 .signup-form p {
-  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  font-size: clamp(0.75rem, 1vw, 0.8rem);
   margin: clamp(3px, 0.8vw, 5px) 0;
-  line-height: 1.5;
+  line-height: 1;
   text-align: start;
   padding: clamp(3px, 0.8vw, 5px) clamp(8px, 1.5vw, 12px);
-  overflow-wrap: break-word; /* Ngăn văn bản dài tràn */
+  overflow-wrap: break-word;
 }
 
 .signup-form button {
@@ -278,12 +280,11 @@
   padding: clamp(20px, 3vw, 30px) 0;
   color: white;
   text-align: center;
-  width: 100%;
   margin: 0 auto;
 }
 
 .stars-center {
-  width: clamp(45px, 7vw, 60px); /* Thu nhỏ hình sao */
+  width: clamp(45px, 7vw, 60px);
   margin: 0 auto clamp(8px, 1.2vw, 12px);
 }
 
@@ -323,7 +324,7 @@
 
 .testimonial-carousel {
   position: relative;
-  overflow: hidden; /* Ngăn tràn carousel */
+  overflow: hidden;
   margin: 0 auto;
 }
 
@@ -334,10 +335,11 @@
 
 .testimonial-item {
   min-width: 100%;
-  padding: 0 clamp(4%, 6vw, 8%); /* Thu nhỏ padding */
+  padding: 0 clamp(4%, 6vw, 8%);
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .review-text {
@@ -345,7 +347,7 @@
   font-style: italic;
   line-height: 1.6;
   margin-bottom: clamp(8px, 1.2vw, 12px);
-  overflow-wrap: break-word; /* Ngăn quote dài tràn */
+  overflow-wrap: break-word;
 }
 
 .review-author {
@@ -432,10 +434,10 @@
   margin-bottom: clamp(8px, 1.2vw, 12px);
   color: #333;
   text-align: center;
-  max-width: clamp(85%, 95%, 98%); /* Thu nhỏ để vừa hơn */
+  max-width: clamp(85%, 95%, 98%);
   margin-left: auto;
   margin-right: auto;
-  overflow-wrap: break-word; /* Ngăn văn bản dài tràn */
+  overflow-wrap: break-word;
 }
 
 .centered-text {
@@ -445,18 +447,18 @@
 .feature-cards-v2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(10px, 1.5vw, 15px); /* Thu nhỏ gap */
+  gap: clamp(10px, 1.5vw, 15px);
   justify-content: center;
   padding: 0;
 }
 
 .feature-card-v2 {
   background: #f9f9f9;
-  padding: clamp(12px, 2vw, 15px); /* Thu nhỏ padding */
+  padding: clamp(12px, 2vw, 15px);
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ngăn tràn nội dung card */
+  overflow: hidden;
 }
 
 .feature-card-v2 h5 {
@@ -464,7 +466,7 @@
   font-weight: 600;
   margin: 0;
   color: black;
-  overflow-wrap: break-word; /* Ngăn text dài tràn */
+  overflow-wrap: break-word;
 }
 
 .disclaimer {
@@ -489,7 +491,7 @@
 }
 
 .social-media img {
-  width: clamp(18px, 2.5vw, 22px); /* Thu nhỏ icon */
+  width: clamp(18px, 2.5vw, 22px);
   height: auto;
 }
 
@@ -548,23 +550,38 @@
   .home-header {
     padding: clamp(6px, 1.5vw, 12px) clamp(10px, 2vw, 20px);
   }
+
+  /* Bố cục cho màn hình lớn, hình ảnh và form nằm cạnh nhau */
   .main-content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
     padding: clamp(12px, 2.5vw, 25px);
   }
+
   .left-content {
-    max-width: clamp(350px, 45%, 450px);
+    text-align: left;
+    max-width: 450px;
   }
+
   .right-content {
-    max-width: clamp(280px, 45%, 360px);
+    max-width: 450px;
+    padding: 0;
   }
+
   .invoice-carousel {
-    max-width: clamp(280px, 90%, 360px);
+    max-width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
   }
+
   .signup-form {
     padding: clamp(6px, 1.5vw, 12px);
   }
   .signup-form form {
-    max-width: clamp(320px, 80%, 400px);
+    max-width: 500px;
   }
   .feature-cards-v2 {
     grid-template-columns: repeat(4, 1fr);

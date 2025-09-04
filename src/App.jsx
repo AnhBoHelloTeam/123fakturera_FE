@@ -9,6 +9,7 @@ import LanguageProvider from './components/LanguageProvider';
 import Verify from './components/Verify';
 import MyBusiness from './components/MyBusiness';
 import SelectLanguage from './pages/SelectLanguage';
+import PriceList from './pages/Pricelist';
 import './assets/styles.css';
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
               <Route path="/verify" element={<Verify />} />
               <Route path="/select-language" element={<SelectLanguage setLanguage={setLanguage} />} />
               <Route path="/mybusiness" element={<MyBusiness language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
+              <Route path="/price-list" element={<PriceList language={language} setLanguage={setLanguage} />} /> {/* Add this new route */}
+
             </Routes>
           </div>
         )}

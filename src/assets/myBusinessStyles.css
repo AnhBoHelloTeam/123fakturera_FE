@@ -1,10 +1,7 @@
-/* myBusinessStyles.css */
-
-/* Global layout and background */
 .mybusiness-container {
     min-height: 100vh;
-    color: #fff;
-    background: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+    color: #000; /* Đổi màu chữ sang đen để dễ đọc trên nền trắng */
+    background: #fff; /* Đặt nền trắng */
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -51,11 +48,11 @@
 }
 
 .nav-link-item.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .nav-link-item span {
-    color: #fff;
+    color: #343131;
     text-decoration: none;
     font-weight: bold;
 }

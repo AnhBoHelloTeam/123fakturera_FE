@@ -135,15 +135,15 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
     // Header tabs configuration
     const headerTabs = {
         desktop: [
-            { id: 'businessDetails', text: t.businessDetailsTitle, icon: '📄', active: true },
-            { id: 'settings', text: t.settingsTitle, icon: '⚙️', active: false },
-            { id: 'standardTexts', text: t.standardTextsTitle, icon: '🔢', active: false },
-            { id: 'goToInvoices', text: t.goToInvoices, icon: '', active: false, specialClass: 'go-to-invoices' },
+            { id: 'businessDetails', text: t.businessDetailsTitle, path: '/mybusiness', active: true },
+            { id: 'settings', text: t.settingsTitle, path: '/settings', active: false },
+            { id: 'standardTexts', text: t.standardTextsTitle, path: '/standard-texts', active: false },
+            { id: 'goToInvoices', text: t.goToInvoices, path: '/invoices', specialClass: 'go-to-invoices' },
         ],
         mobile: [
-            { id: 'businessDetails', text: t.businessDetailsTitle, icon: '📄', active: true },
-            { id: 'settings', text: t.settingsTitle, icon: '⚙️', active: false },
-            { id: 'standardTexts', text: t.standardTextsTitle, icon: '🔢', active: false },
+            { id: 'businessDetails', text: t.businessDetailsTitle, path: '/mybusiness', active: true },
+            { id: 'settings', text: t.settingsTitle, path: '/settings', active: false },
+            { id: 'standardTexts', text: t.standardTextsTitle, path: '/standard-texts', active: false },
         ],
     };
 
@@ -204,64 +204,64 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
     }
 
     return (
-        <div className="mybusiness-container">
-            <header className="header">
-                <div className="header-left">
+    <div className="mybusiness-container">
+        <header className="header">
+            <div className="header-left">
+                <img
+                    src="https://storage.123fakturera.se/public/icons/diamond.png"
+                    alt="Logo"
+                    className="logo"
+                    onClick={() => navigate('/login')}
+                    style={{ cursor: 'pointer' }}
+                />
+                <div className="hamburger-menu-wrapper">
+                    <HamburgerMenu language={language} headerLinks={sidebarLinks[language]} />
+                    <span className="menu-text">{t.menu}</span>
+                </div>
+                {/* Giữ lại nav desktop với 4 mục chính */}
+                <nav className="nav-links desktop-nav">
+                    <ul>
+                        {headerTabs.desktop.map(tab => (
+                            <li key={tab.id} className={`nav-link-item ${tab.active ? 'active' : ''} ${tab.specialClass || ''}`}>
+                                <span>{tab.text}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+            <div className="header-right">
+                {/* Xóa hoàn toàn nav mobile để không còn các mục lặp lại */}
+                {/* <nav className="nav-links mobile-nav">
+                    <ul>
+                        {headerTabs.mobile.map(tab => (
+                            <li key={tab.id} className={`nav-link-item ${tab.active ? 'active' : ''}`}>
+                                <span>{tab.text}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </nav> */}
+                <div className="language-switcher">
                     <img
-                        src="https://storage.123fakturera.se/public/icons/diamond.png"
-                        alt="Logo"
-                        className="logo"
-                        onClick={() => navigate('/login')}
-                        style={{ cursor: 'pointer' }}
+                        src="https://storage.123fakturere.no/public/flags/GB.png"
+                        alt="English"
+                        className={language === 'en' ? 'flag active' : 'flag'}
+                        onClick={() => setLanguage('en')}
                     />
-                    <div className="hamburger-menu-wrapper">
-                        <HamburgerMenu language={language} headerLinks={sidebarLinks[language]} />
-                        <span className="menu-text">{t.menu}</span>
-                    </div>
-                    <nav className="nav-links desktop-nav">
-                        <ul>
-                            {headerTabs.desktop.map(tab => (
-                                <li key={tab.id} className={`nav-link-item ${tab.active ? 'active' : ''} ${tab.specialClass || ''}`}>
-                                    {tab.icon && <span className="icon">{tab.icon}</span>}
-                                    <span>{tab.text}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
+                    <img
+                        src="https://storage.123fakturere.no/public/flags/SE.png"
+                        alt="Swedish"
+                        className={language === 'sv' ? 'flag active' : 'flag'}
+                        onClick={() => setLanguage('sv')}
+                    />
                 </div>
-                <div className="header-right">
-                    <nav className="nav-links mobile-nav">
-                        <ul>
-                            {headerTabs.mobile.map(tab => (
-                                <li key={tab.id} className={`nav-link-item ${tab.active ? 'active' : ''}`}>
-                                    {tab.icon && <span className="icon">{tab.icon}</span>}
-                                    <span>{tab.text}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                    <div className="language-switcher">
-                        <img
-                            src="https://storage.123fakturere.no/public/flags/GB.png"
-                            alt="English"
-                            className={language === 'en' ? 'flag active' : 'flag'}
-                            onClick={() => setLanguage('en')}
-                        />
-                        <img
-                            src="https://storage.123fakturere.no/public/flags/SE.png"
-                            alt="Swedish"
-                            className={language === 'sv' ? 'flag active' : 'flag'}
-                            onClick={() => setLanguage('sv')}
-                        />
-                    </div>
-                </div>
-            </header>
+            </div>
+        </header>
             <main className="mybusiness-main">
                 <aside className="sidebar">
                     <h3 className="sidebar-heading">{t.menu}</h3>
                     <ul>
                         {sidebarLinks[language].map((link, index) => (
-                            <li key={index} className={link.text === t.businessDetailsTitle ? 'active' : ''}>
+                            <li key={index} className={link.active ? 'active' : ''}>
                                 <a href={link.path}>
                                     <span className="sidebar-icon">{link.icon}</span>
                                     {link.text}
@@ -403,11 +403,11 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
                                     </div>
                                     <div className="logo-upload">
                                         <label className="logo-label">{t.chooseLogo}</label>
-                                        <button className="btn-upload">{t.uploadNew}<span>+</span></button>
+                                        <button className="btn-upload">{t.uploadNew}</button>
                                     </div>
                                     <div className="logo-preview">
                                         <label className="logo-label">{t.previewLogo}</label>
-                                        <button className="btn-preview">{t.preview}<span>🔍</span></button>
+                                        <button className="btn-preview">{t.preview}</button>
                                     </div>
                                 </div>
                             </div>
@@ -417,8 +417,8 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
                                     <img src="https://storage.123fakturera.se/public/icons/diamond.png" alt="Profile" />
                                 </div>
                                 <div className="profile-controls">
-                                    <button className="btn-edit">{t.editOriginal}<span>+</span></button>
-                                    <button className="btn-upload">{t.uploadNew}<span>+</span></button>
+                                    <button className="btn-edit">{t.editOriginal}</button>
+                                    <button className="btn-upload">{t.uploadNew}</button>
                                 </div>
                             </div>
                         </div>
