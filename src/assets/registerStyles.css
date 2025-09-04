@@ -1,584 +1,438 @@
-/* Container chính bao bọc toàn bộ nội dung */
-.register-container {
-    min-height: 100vh;
-    color: #fff;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-    background: transparent;
-    background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 100px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-links ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.language-switcher {
-    display: flex;
-    gap: 10px;
-}
-
-.logo {
-    width: 50px;
-    cursor: pointer;
-}
-
-.flag {
-    width: 30px;
-    cursor: pointer;
-    opacity: 0.6;
-    border-radius: 3px;
-}
-
-.flag.active {
-    opacity: 1;
-    border: 2px solid #fff;
-}
-
-.hamburger-menu {
-    display: none;
-    position: relative;
-}
-
-.hamburger-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.hamburger-button span {
-    width: 30px;
-    height: 3px;
-    background: #fff;
-    transition: all 0.3s;
-}
-
-.menu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-.menu.open {
-    display: block;
-}
-
-.menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu li {
-    margin: 10px 0;
-}
-
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Registration form styling */
 .content {
-    position: relative;
+  position: relative;
 }
 
 .register-content-root {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .back-register {
-    background: #fff;
-    width: 750px;
-    border-radius: 40px;
-    margin: 0 auto;
-    transition: width 600ms ease-in-out;
-    color: white;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    font-weight: 500;
-    margin-top: max(20px, calc(50svh - 380px));
-    margin-bottom: 20px;
+  background: #fff;
+  width: 750px;
+  border-radius: 40px;
+  margin: 0 auto;
+  transition: width 600ms ease-in-out;
+  color: white;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  font-weight: 500;
+  margin-top: max(20px, calc(50svh - 380px));
+  margin-bottom: 20px;
 }
 
 .register-heading {
-    font-size: 2.5em;
-    color: #ff0000;
-    letter-spacing: 0.025em;
-    font-weight: 700;
-    text-align: center;
-    padding-bottom: 0.5rem;
+  font-size: 2.5em;
+  color: #ff0000;
+  letter-spacing: 0.025em;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 0.5rem;
 }
 
 .register-section {
-    width: 75%;
-    margin: auto;
-    color: rgba(0, 0, 0, 0.9);
+  width: 75%;
+  margin: auto;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .register-input {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 1.5rem;
-    width: 100%;
-    height: 3.5rem;
-    border: 1px solid #ccc;
-    background: none;
-    margin-top: 3px;
-    font-size: 16px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.9);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 1.5rem;
+  width: 100%;
+  height: 3.5rem;
+  border: 1px solid #ccc;
+  background: none;
+  margin-top: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .register-input-field {
-    margin-top: 1.2rem;
+  margin-top: 1.2rem;
 }
 
 .password-input-div {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: right;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 
 #show-password-img {
-    position: absolute;
-    margin-right: 20px;
-    height: 40%;
-    margin-top: 5px;
-    cursor: pointer;
+  position: absolute;
+  margin-right: 20px;
+  height: 40%;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .Register-Button-div {
-    text-align: center;
-    margin-top: 1.25rem;
+  text-align: center;
+  margin-top: 1.25rem;
 }
 
 .Register-Button {
-    color: white;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: #07a31f;
-    text-transform: none;
-    font: inherit;
-    cursor: pointer;
-    border-radius: 40px;
-    border: none;
-    font-weight: 500;
-    width: 35vw;
-    min-width: max-content;
-    padding-left: 40px;
-    padding-right: 40px;
-    max-width: 270px;
-    transition: background-color 500ms ease-in-out;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #07a31f;
+  text-transform: none;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 40px;
+  border: none;
+  font-weight: 500;
+  width: 35vw;
+  min-width: max-content;
+  padding-left: 40px;
+  padding-right: 40px;
+  max-width: 270px;
+  transition: background-color 500ms ease-in-out;
 }
 
 .Register-Button:hover {
-    background-color: #087522;
+  background-color: #087522;
 }
 
 .gotodifferntlink {
-    margin: auto;
-    justify-self: center;
-    width: 300px;
-    text-align: center;
-    margin-top: 1.25rem;
-    color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: space-between;
+  margin: auto;
+  justify-self: center;
+  width: 300px;
+  text-align: center;
+  margin-top: 1.25rem;
+  color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: space-between;
 }
 
 .register-login-link {
-    color: #07a31f;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  color: #07a31f;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .register-login-link:hover {
-    color: #087522;
-    text-decoration: underline;
+  color: #087522;
+  text-decoration: underline;
 }
 
 .error-span {
-    color: red;
-    margin-top: 0.5rem;
-    font-weight: 400;
-    line-height: 1.25rem;
-    display: block;
+  color: red;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  display: block;
 }
 
 .register-label {
-    color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .register-info {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    color: #555;
-    text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #555;
+  text-align: left;
 }
 
 /* Placeholder styling */
 ::placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 ::-webkit-input-placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 :-moz-placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 ::-moz-placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 :-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
 ::-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
 }
 
-/* Responsive design */
-@media (max-width: 1023px) {
-    .header {
-        padding: 10px 20px;
-    }
-    .nav-links {
-        display: none;
-    }
-    .hamburger-menu {
-        display: block;
-    }
-    .header-left .logo {
-        display: none;
-    }
-}
-
+/* Responsive design for register-specific styles */
 @media (max-width: 674px) {
-    html,
-    body {
-        display: flex;
-        flex: 1;
-        width: 100%;
-        padding-bottom: 0px !important;
-    }
-    main {
-        width: 100%;
-        display: flex;
-        height: inherit;
-        flex: 1;
-    }
-    .register-container,
-    .register-content-root {
-        width: 100%;
-        display: flex;
-        height: 100%;
-        flex-direction: column;
-    }
-    .content {
-        height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0px 10px;
-        margin: 0px;
-        margin-top: 20px;
-        flex: 1;
-        position: relative;
-    }
-    .back-register {
-        margin: 0px;
-        max-width: 100%;
-    }
-    .Register-Button {
-        width: 50%;
-    }
-    .register-heading {
-        font-size: 30px;
-    }
+  html,
+  body {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding-bottom: 0px !important;
+  }
+  main {
+    width: 100%;
+    display: flex;
+    height: inherit;
+    flex: 1;
+  }
+  .register-content-root {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  .content {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+    margin: 0px;
+    margin-top: 20px;
+    flex: 1;
+    position: relative;
+  }
+  .back-register {
+    margin: 0px;
+    max-width: 100%;
+  }
+  .Register-Button {
+    width: 50%;
+  }
+  .register-heading {
+    font-size: 30px;
+  }
 }
 
 @media (min-width: 675px) and (max-width: 899px) {
-    .back-register {
-        max-width: 90%;
-        margin-top: 0;
-        margin-bottom: 0;
-        width: 80%;
-    }
-    .register-content-root {
-        width: 100%;
-    }
-    .content {
-        margin-top: max(20px, calc(50svh - 229px - 36px - 80px));
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+  .back-register {
+    max-width: 90%;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 80%;
+  }
+  .register-content-root {
+    width: 100%;
+  }
+  .content {
+    margin-top: max(20px, calc(50svh - 229px - 36px - 80px));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 900px) and (max-width: 999px) {
-    .content {
-        position: absolute;
-        width: 100%;
-        height: calc(100svh - 220px);
-        top: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .back-register {
-        margin-top: 0;
-        margin-bottom: 0;
-        width: 680px;
-    }
-    .register-heading {
-        font-size: 44px;
-    }
-    .content,
-    .register-input {
-        font-size: 18px;
-    }
+  .content {
+    position: absolute;
+    width: 100%;
+    height: calc(100svh - 220px);
+    top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .back-register {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 680px;
+  }
+  .register-heading {
+    font-size: 44px;
+  }
+  .content,
+  .register-input {
+    font-size: 18px;
+  }
 }
 
 @media (min-width: 1000px) and (max-width: 1269px) and (orientation: landscape) {
-    .content {
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-    .back-register {
-        width: 675px;
-        margin-top: max(20px, calc(50svh - 221px - 80px));
-        margin-bottom: max(20px, calc(50svh - 221px));
-    }
-    .register-heading {
-        font-size: 40px;
-    }
-    .content,
-    .register-input {
-        font-size: 16px;
-    }
-    .register-input {
-        height: 3rem;
-    }
-    .register-section {
-        width: 83.33%;
-    }
+  .content {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .back-register {
+    width: 675px;
+    margin-top: max(20px, calc(50svh - 221px - 80px));
+    margin-bottom: max(20px, calc(50svh - 221px));
+  }
+  .register-heading {
+    font-size: 40px;
+  }
+  .content,
+  .register-input {
+    font-size: 16px;
+  }
+  .register-input {
+    height: 3rem;
+  }
+  .register-section {
+    width: 83.33%;
+  }
 }
 
 @media (min-width: 1270px) and (max-width: 1389px) and (orientation: landscape) {
-    .back-register {
-        margin-top: max(40px, calc(50svh - 196px - 69px));
-        padding-top: 1.5rem;
-        width: 520px;
-        padding-bottom: 2.5rem;
-        margin-bottom: max(40px, calc(50svh - 196px));
-    }
-    .register-section {
-        width: 80%;
-    }
-    .gotodifferntlink {
-        width: 350px;
-    }
-    .register-heading {
-        font-size: 38px;
-    }
-    .content,
-    .register-input {
-        font-size: 15px;
-    }
-    .register-heading {
-        padding-bottom: 0px;
-    }
-    .register-input {
-        height: 2.5rem;
-    }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 196px - 69px));
+    padding-top: 1.5rem;
+    width: 520px;
+    padding-bottom: 2.5rem;
+    margin-bottom: max(40px, calc(50svh - 196px));
+  }
+  .register-section {
+    width: 80%;
+  }
+  .gotodifferntlink {
+    width: 350px;
+  }
+  .register-heading {
+    font-size: 38px;
+  }
+  .content,
+  .register-input {
+    font-size: 15px;
+  }
+  .register-heading {
+    padding-bottom: 0px;
+  }
+  .register-input {
+    height: 2.5rem;
+  }
 }
 
 @media (min-width: 1390px) and (max-width: 1589px) and (orientation: landscape) {
-    .back-register {
-        margin-top: max(40px, calc(50svh - 203px - 69px - 21px));
-        padding-top: 1.5rem;
-        width: 540px;
-        padding-bottom: 2.5rem;
-        margin-bottom: 0px;
-    }
-    .register-section {
-        width: 80%;
-    }
-    .gotodifferntlink {
-        width: 350px;
-    }
-    .register-heading {
-        font-size: 40px;
-    }
-    .content,
-    .register-input {
-        font-size: 16px;
-    }
-    .register-heading {
-        padding-bottom: 0px;
-    }
-    .register-input {
-        height: 42px;
-    }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 203px - 69px - 21px));
+    padding-top: 1.5rem;
+    width: 540px;
+    padding-bottom: 2.5rem;
+    margin-bottom: 0px;
+  }
+  .register-section {
+    width: 80%;
+  }
+  .gotodifferntlink {
+    width: 350px;
+  }
+  .register-heading {
+    font-size: 40px;
+  }
+  .content,
+  .register-input {
+    font-size: 16px;
+  }
+  .register-heading {
+    padding-bottom: 0px;
+  }
+  .register-input {
+    height: 42px;
+  }
 }
 
 @media (min-width: 1590px) and (max-width: 1909px) and (orientation: landscape) {
-    .register-heading {
-        font-size: 44px;
-    }
-    .back-register {
-        margin-top: max(40px, calc(50svh - 223px - 69px - 21px));
-        width: 570px;
-        margin-bottom: 0px;
-    }
-    .content,
-    .register-input {
-        font-size: 17px;
-    }
-    .register-input {
-        height: 44px;
-    }
-    .register-section {
-        width: 80%;
-    }
+  .register-heading {
+    font-size: 44px;
+  }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 223px - 69px - 21px));
+    width: 570px;
+    margin-bottom: 0px;
+  }
+  .content,
+  .register-input {
+    font-size: 17px;
+  }
+  .register-input {
+    height: 44px;
+  }
+  .register-section {
+    width: 80%;
+  }
 }
 
 @media (min-width: 1910px) and (max-width: 2549px) and (orientation: landscape) {
-    .register-heading {
-        font-size: 46px;
-    }
-    .back-register {
-        margin-top: max(40px, calc(50svh - 235px - 23px - 69px));
-        margin-bottom: 30px;
-        width: 660px;
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        padding-right: 5rem;
-        padding-left: 5rem;
-    }
-    .register-section {
-        width: 100%;
-    }
-    .content,
-    .register-input {
-        font-size: 18px;
-    }
-    .gotodifferntlink {
-        width: 70%;
-    }
-    .register-input {
-        height: 51px;
-    }
+  .register-heading {
+    font-size: 46px;
+  }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 235px - 23px - 69px));
+    margin-bottom: 30px;
+    width: 660px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
+  .register-section {
+    width: 100%;
+  }
+  .content,
+  .register-input {
+    font-size: 18px;
+  }
+  .gotodifferntlink {
+    width: 70%;
+  }
+  .register-input {
+    height: 51px;
+  }
 }
 
 @media (min-width: 2550px) and (orientation: landscape) {
-    .back-register {
-        margin-top: max(40px, calc(50svh - 243px - 24px - 87px));
-        margin-bottom: 20px;
-        width: 700px;
-    }
-    .register-heading {
-        font-size: 48px;
-    }
-    .content,
-    .register-input {
-        font-size: 20px;
-    }
-    .register-input {
-        height: 52px;
-    }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 243px - 24px - 87px));
+    margin-bottom: 20px;
+    width: 700px;
+  }
+  .register-heading {
+    font-size: 48px;
+  }
+  .content,
+  .register-input {
+    font-size: 20px;
+  }
+  .register-input {
+    height: 52px;
+  }
 }
 
 @media (min-width: 3430px) and (orientation: landscape) {
-    .back-register {
-        margin-top: max(40px, calc(50svh - 313px - 102px - 29px));
-        margin-bottom: 20px;
-        width: 1000px;
-    }
-    .register-heading {
-        font-size: 56px;
-        padding-bottom: 0px;
-    }
-    .content,
-    .register-input {
-        font-size: 28px;
-    }
-    .register-input {
-        height: 70px;
-    }
-    .register-input-field {
-        margin-top: 2rem;
-    }
-    .Register-Button {
-        max-width: 350px;
-        padding: 1.3rem 50px;
-    }
+  .back-register {
+    margin-top: max(40px, calc(50svh - 313px - 102px - 29px));
+    margin-bottom: 20px;
+    width: 1000px;
+  }
+  .register-heading {
+    font-size: 56px;
+    padding-bottom: 0px;
+  }
+  .content,
+  .register-input {
+    font-size: 28px;
+  }
+  .register-input {
+    height: 70px;
+  }
+  .register-input-field {
+    margin-top: 2rem;
+  }
+  .Register-Button {
+    max-width: 350px;
+    padding: 1.3rem 50px;
+  }
 }

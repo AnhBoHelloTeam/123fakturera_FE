@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HamburgerMenu from '../components/HamburgerMenu';
 import '../assets/home.css';
+import '../assets/commonStyles.css'; 
 
 function Home() {
   const images = [
@@ -97,12 +98,12 @@ function Home() {
   };
 
   return (
-    <div className="home-container">
-      <header className="header">
-        <div className="header-left">
+    <div className="container">
+      <header className="home-header">
+        <div className="home-header-left">
           <img src="https://storage.123fakturera.se/public/icons/diamond.png" alt="Logo" className="logo" />
         </div>
-        <div className="header-right">
+        <div className="home-header-right">
           <nav className="main-nav">
             <ul>
               {headerLinks.map((link, index) => (

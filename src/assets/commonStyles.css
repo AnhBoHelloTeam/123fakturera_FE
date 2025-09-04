@@ -1,0 +1,162 @@
+/* assets/commonStyles.css */
+
+/* Import Nunito Sans font to match HTML */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&display=swap');
+
+/* Global styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* Shared container styles */
+.container {
+  background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+/* Shared header styles (for pages other than Home) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 100px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+.logo {
+  width: 50px;
+  cursor: pointer;
+}
+
+.flag {
+  width: 30px;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 3px;
+}
+
+.flag.active {
+  opacity: 1;
+  border: 2px solid #fff;
+}
+
+.hamburger-menu {
+  display: none;
+  position: relative;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-button span {
+  width: 30px;
+  height: 3px;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.menu.open {
+  display: block;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 10px 0;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Responsive styles for shared header */
+@media (max-width: 1023px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  .header-left .logo {
+    display: none;
+  }
+}
+

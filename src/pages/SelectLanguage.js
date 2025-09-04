@@ -1,7 +1,6 @@
-// pages/SelectLanguage.js
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import HamburgerMenu from '../components/HamburgerMenu';
+import Layout from '../components/Layout';
 import '../assets/selectLanguageStyles.css';
 
 function SelectLanguage({ setLanguage }) {
@@ -9,6 +8,11 @@ function SelectLanguage({ setLanguage }) {
   const location = useLocation();
   const [error, setError] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  const headerLinks = {
+    en: [],
+    sv: [],
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,7 +29,7 @@ function SelectLanguage({ setLanguage }) {
 
   const handleLanguageSelect = (lang) => {
     setSelectedLanguage(lang);
-    setError(null); // Xóa thông báo lỗi khi người dùng chọn ngôn ngữ
+    setError(null);
   };
 
   const handleContinue = () => {
@@ -38,71 +42,39 @@ function SelectLanguage({ setLanguage }) {
   };
 
   return (
-    <div className="select-language-container">
-      <header className="header">
-        <div className="header-left">
-          <img
-            src="https://storage.123fakturera.se/public/icons/diamond.png"
-            alt="Logo"
-            className="logo"
-            onClick={() => navigate('/login')}
-            style={{ cursor: 'pointer' }}
-          />
-          <HamburgerMenu language="en" headerLinks={{ en: [], sv: [] }} />
-        </div>
-        <div className="header-right">
-          <div className="language-switcher">
-            <img
-              src="https://storage.123fakturere.no/public/flags/GB.png"
-              alt="English"
-              className="flag active"
-              onClick={() => handleLanguageSelect('en')}
-            />
-            <img
-              src="https://storage.123fakturere.no/public/flags/SE.png"
-              alt="Swedish"
-              className="flag"
+    <Layout language={selectedLanguage || 'en'} setLanguage={setLanguage} headerLinks={headerLinks}>
+      <div className="select-language-content-root">
+        <div className="back-select-language">
+          <h2 className="select-language-heading">Choose Language</h2>
+          <p className="language-description">
+            Here you can choose which language you want to use on the invoices and in the user interface.
+          </p>
+          <div className="language-options">
+            <button
+              className={`language-button ${selectedLanguage === 'sv' ? 'selected' : ''}`}
               onClick={() => handleLanguageSelect('sv')}
-            />
-          </div>
-        </div>
-      </header>
-      <main>
-        <div className="select-language-content-root">
-          <div className="back-select-language">
-            <h2 className="select-language-heading">Choose Language</h2>
-            <p className="language-description">
-              Here you can choose which language you want to use on the invoices and in the user interface.
-            </p>
-            <div className="language-options">
-              {/* Nút Svenska */}
-              <button
-                className={`language-button ${selectedLanguage === 'sv' ? 'selected' : ''}`}
-                onClick={() => handleLanguageSelect('sv')}
-              >
-                <img src="https://storage.123fakturera.se/public/flags/SE.png" alt="Swedish" className="flag" />
-                Svenska
-              </button>
-              {/* Nút English */}
-              <button
-                className={`language-button ${selectedLanguage === 'en' ? 'selected' : ''}`}
-                onClick={() => handleLanguageSelect('en')}
-              >
-                <img src="https://storage.123fakturera.se/public/flags/GB.png" alt="English" className="flag" />
-                English
-              </button>
-            </div>
-            <p className="footer-description">
-              You can change this at any time in My Business settings. There you can also use different language for the invoice and the user interface.
-            </p>
-            {error && <span className="error-span">{error}</span>}
-            <button className="continue-button" onClick={handleContinue}>
-              Continue
+            >
+              <img src="https://storage.123fakturera.se/public/flags/SE.png" alt="Swedish" className="flag" />
+              Svenska
+            </button>
+            <button
+              className={`language-button ${selectedLanguage === 'en' ? 'selected' : ''}`}
+              onClick={() => handleLanguageSelect('en')}
+            >
+              <img src="https://storage.123fakturera.se/public/flags/GB.png" alt="English" className="flag" />
+              English
             </button>
           </div>
+          <p className="footer-description">
+            You can change this at any time in My Business settings. There you can also use different language for the invoice and the user interface.
+          </p>
+          {error && <span className="error-span">{error}</span>}
+          <button className="continue-button" onClick={handleContinue}>
+            Continue
+          </button>
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

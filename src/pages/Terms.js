@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Layout from '../components/Layout';
 import TermsContent from '../components/TermsContent';
-import HamburgerMenu from '../components/HamburgerMenu';
 
 function Terms({ language, setLanguage }) {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [button, setButton] = useState('');
   const [context, setContext] = useState('');
@@ -56,63 +56,24 @@ function Terms({ language, setLanguage }) {
   };
 
   return (
-    <div className="terms-container" style={{ backgroundImage: `url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)` }}>
-      <header className="header">
-        <div className="header-left">
-          <img
-            src="https://storage.123fakturera.se/public/icons/diamond.png"
-            alt="Logo"
-            className="logo"
-            onClick={() => navigate('/login')} // Navigate to /login on click
-            style={{ cursor: 'pointer' }}
-          />
-          <HamburgerMenu language={language} />
+    <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <div className="terms-main">
+          <div className="terms-title">{title}</div>
+          <button className="terms-button" onClick={handleClose}>
+            {button}
+          </button>
+          <TermsContent content={context} />
+          <button className="terms-button" onClick={handleClose}>
+            {button}
+          </button>
         </div>
-        <div className="header-right">
-          <nav className="nav-links">
-            <ul>
-              {headerLinks[language].map((link, index) => (
-                <li key={index}>
-                  <a href={link.href}>{link.text}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="language-switcher">
-            <img
-              src="https://storage.123fakturere.no/public/flags/GB.png"
-              alt="English"
-              className={language === 'en' ? 'flag active' : 'flag'}
-              onClick={() => setLanguage('en')}
-            />
-            <img
-              src="https://storage.123fakturere.no/public/flags/SE.png"
-              alt="Swedish"
-              className={language === 'sv' ? 'flag active' : 'flag'}
-              onClick={() => setLanguage('sv')}
-            />
-          </div>
-        </div>
-      </header>
-      <main>
-        {loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <div className="terms-main">
-            <div className="terms-title">{title}</div>
-            <button className="terms-button" onClick={handleClose}>
-              {button}
-            </button>
-            <TermsContent content={context} />
-            <button className="terms-button" onClick={handleClose}>
-              {button}
-            </button>
-          </div>
-        )}
-      </main>
-    </div>
+      )}
+    </Layout>
   );
 }
 
