@@ -6,6 +6,9 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import LanguageProvider from './components/LanguageProvider';
+import Verify from './components/Verify';
+import MyBusiness from './components/MyBusiness';
+import SelectLanguage from './pages/SelectLanguage';
 import './assets/styles.css';
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
               <Route path="/contact" element={<Contact language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/login" element={<Login language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/register" element={<Register language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
+              <Route path="/verify" element={<Verify />} />
+              <Route path="/select-language" element={<SelectLanguage setLanguage={setLanguage} />} />
+              <Route path="/mybusiness" element={<MyBusiness language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
             </Routes>
           </div>
         )}

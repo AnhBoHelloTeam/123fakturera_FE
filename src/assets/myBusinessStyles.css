@@ -1,11 +1,10 @@
+/* myBusinessStyles.css */
+
+/* Global layout and background */
 .mybusiness-container {
     min-height: 100vh;
     color: #fff;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-    background: transparent;
-    background-image: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
+    background: url('https://storage.123fakturera.se/public/wallpapers/sverige43.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -13,6 +12,7 @@
     flex-direction: column;
 }
 
+/* Header styles - Kept as is */
 .header {
     display: flex;
     justify-content: space-between;
@@ -20,8 +20,7 @@
     padding: 10px 100px;
     position: sticky;
     top: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 100;
 }
 
 .header-left {
@@ -41,13 +40,21 @@
     display: flex;
     margin: 0;
     padding: 0;
+    gap: 20px;
 }
 
-.nav-links li {
-    margin: 0 15px;
+.nav-link-item {
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.nav-links a {
+.nav-link-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link-item span {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
@@ -68,296 +75,343 @@
     cursor: pointer;
     opacity: 0.6;
     border-radius: 3px;
+    border: 2px solid transparent;
 }
 
 .flag.active {
     opacity: 1;
-    border: 2px solid #fff;
+    border-color: #fff;
 }
 
+/* Hamburger Menu - Kept as is */
 .hamburger-menu {
     display: none;
     position: relative;
 }
 
-.hamburger-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+/* Main Content Area */
+.mybusiness-main {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar and main content */
+    gap: 20px;
+    padding: 20px 0 20px 20px;
+    color: #000;
 }
 
-.hamburger-button span {
-    width: 30px;
-    height: 3px;
-    background: #fff;
-    transition: all 0.3s;
+/* Sidebar styles */
+.sidebar {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.menu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000;
+.sidebar-heading {
+    font-size: 1.5em;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
 }
 
-.menu.open {
-    display: block;
-}
-
-.menu ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.menu li {
-    margin: 10px 0;
+.sidebar li {
+    margin-bottom: 10px;
 }
 
-.menu a {
-    color: #fff;
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
     text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar li a:hover {
+    background-color: #e6f2ff;
+    color: #007bff;
+}
+
+.sidebar li.active a {
+    background-color: #e6f2ff;
+    color: #007bff;
     font-weight: bold;
 }
 
-.mybusiness-content-root {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.sidebar-icon {
+    font-size: 1.2em;
 }
 
-.back-mybusiness {
-    background: #fff;
-    width: 750px;
-    border-radius: 40px;
-    margin: 0 auto;
-    transition: width 600ms ease-in-out;
-    color: white;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    font-weight: 500;
-    margin-top: max(20px, calc(50svh - 380px));
+/* Main Content Grid */
+.content-area {
+    padding-right: 20px;
+}
+
+.mybusiness-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.mybusiness-left-panel,
+.mybusiness-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* General Panel Styling */
+.panel {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.panel-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 20px;
 }
 
-.mybusiness-heading {
-    font-size: 2.5em;
-    color: #ff0000;
-    letter-spacing: 0.025em;
-    font-weight: 700;
-    text-align: center;
-    padding-bottom: 0.5rem;
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
 }
 
-.mybusiness-info {
-    width: 75%;
-    margin: auto;
-    color: rgba(0, 0, 0, 0.9);
-    font-size: 16px;
-}
-
-.mybusiness-info p {
-    margin: 10px 0;
-}
-
-.error-span {
-    color: red;
-    margin-top: 0.5rem;
-    font-weight: 400;
-    line-height: 1.25rem;
+.form-group label {
     display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+}
+
+.help-text {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.help-text-link {
+    font-size: 0.9em;
+    color: #007bff;
+    margin-top: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Right Panel Styling */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.current-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.current-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.current-logo span {
+    font-weight: bold;
+    color: #333;
+}
+
+.logo-controls,
+.logo-upload,
+.logo-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-label {
+    font-size: 0.9em;
+    color: #555;
+    flex: 1;
+}
+
+.toggle-switch {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #555;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-btn.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-upload,
+.btn-preview,
+.btn-edit {
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.btn-upload:hover,
+.btn-preview:hover,
+.btn-edit:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-upload span,
+.btn-edit span {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* Profile Picture Panel */
+.profile-picture-panel {
     text-align: center;
 }
 
-/* Responsive design */
-@media (max-width: 1023px) {
+.profile-image-container {
+    margin-top: 20px;
+}
+
+.profile-image-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 1024px) {
+    .mybusiness-main {
+        grid-template-columns: 1fr;
+        padding-left: 0;
+    }
+    .sidebar {
+        display: none; /* Hide sidebar on smaller screens */
+    }
+    .content-area {
+        padding: 0 20px;
+    }
+    .mybusiness-grid {
+        grid-template-columns: 1fr;
+    }
     .header {
         padding: 10px 20px;
     }
     .nav-links {
         display: none;
     }
-    .hamburger-menu {
-        display: block;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5em;
+    color: #555;
+}
+
+/* Error message styling */
+.error-span {
+    color: #d32f2f;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Hamburger menu wrapper improvements */
+.hamburger-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hamburger-menu-wrapper .menu-text {
+    display: none; /* Ẩn chữ "Menu" trên desktop, chỉ hiển thị trên mobile */
+}
+
+@media (max-width: 1024px) {
+    .hamburger-menu-wrapper .menu-text {
+        display: block; /* Hiển thị chữ "Menu" trên mobile */
     }
-    .header-left .logo {
-        display: none;
+    .nav-links.desktop-nav {
+        display: none; /* Ẩn nav desktop trên mobile */
+    }
+    .nav-links.mobile-nav {
+        display: flex; /* Hiển thị nav mobile */
+    }
+    .header-right .language-switcher {
+        gap: 5px; /* Giảm khoảng cách giữa cờ trên mobile */
+    }
+    .mybusiness-left-panel,
+    .mybusiness-right-panel {
+        padding: 20px; /* Giảm padding trên mobile */
     }
 }
 
-@media (max-width: 674px) {
-    html,
-    body {
-        display: flex;
-        flex: 1;
-        width: 100%;
-        padding-bottom: 0px !important;
-    }
-    main {
-        width: 100%;
-        display: flex;
-        height: inherit;
-        flex: 1;
-    }
-    .mybusiness-container,
-    .mybusiness-content-root {
-        width: 100%;
-        display: flex;
-        height: 100%;
-        flex-direction: column;
-    }
-    .back-mybusiness {
-        margin: 0px;
-        max-width: 100%;
-    }
-    .mybusiness-heading {
-        font-size: 30px;
-    }
+/* Inline form group adjustments */
+.form-group-inline {
+    display: flex;
+    gap: 20px;
 }
 
-@media (min-width: 675px) and (max-width: 899px) {
-    .back-mybusiness {
-        max-width: 90%;
-        margin-top: 0;
-        margin-bottom: 0;
-        width: 80%;
-    }
-    .mybusiness-content-root {
-        width: 100%;
-    }
+.inline-field {
+    flex: 1;
 }
 
-@media (min-width: 900px) and (max-width: 999px) {
-    .back-mybusiness {
-        margin-top: 0;
-        margin-bottom: 0;
-        width: 680px;
-    }
-    .mybusiness-heading {
-        font-size: 44px;
-    }
-    .mybusiness-info {
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 1000px) and (max-width: 1269px) and (orientation: landscape) {
-    .back-mybusiness {
-        width: 675px;
-        margin-top: max(20px, calc(50svh - 221px - 80px));
-        margin-bottom: max(20px, calc(50svh - 221px));
-    }
-    .mybusiness-heading {
-        font-size: 40px;
-    }
-    .mybusiness-info {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 1270px) and (max-width: 1389px) and (orientation: landscape) {
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 196px - 69px));
-        padding-top: 1.5rem;
-        width: 520px;
-        padding-bottom: 2.5rem;
-        margin-bottom: max(40px, calc(50svh - 196px));
-    }
-    .mybusiness-info {
-        width: 80%;
-    }
-    .mybusiness-heading {
-        font-size: 38px;
-    }
-    .mybusiness-info {
-        font-size: 15px;
-    }
-}
-
-@media (min-width: 1390px) and (max-width: 1589px) and (orientation: landscape) {
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 203px - 69px - 21px));
-        padding-top: 1.5rem;
-        width: 540px;
-        padding-bottom: 2.5rem;
-        margin-bottom: 0px;
-    }
-    .mybusiness-info {
-        width: 80%;
-    }
-    .mybusiness-heading {
-        font-size: 40px;
-    }
-    .mybusiness-info {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 1590px) and (max-width: 1909px) and (orientation: landscape) {
-    .mybusiness-heading {
-        font-size: 44px;
-    }
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 223px - 69px - 21px));
-        width: 570px;
-        margin-bottom: 0px;
-    }
-    .mybusiness-info {
-        font-size: 17px;
-    }
-}
-
-@media (min-width: 1910px) and (max-width: 2549px) and (orientation: landscape) {
-    .mybusiness-heading {
-        font-size: 46px;
-    }
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 235px - 23px - 69px));
-        margin-bottom: 30px;
-        width: 660px;
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        padding-right: 5rem;
-        padding-left: 5rem;
-    }
-    .mybusiness-info {
-        width: 100%;
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 2550px) and (orientation: landscape) {
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 243px - 24px - 87px));
-        margin-bottom: 20px;
-        width: 700px;
-    }
-    .mybusiness-heading {
-        font-size: 48px;
-    }
-    .mybusiness-info {
-        font-size: 20px;
-    }
-}
-
-@media (min-width: 3430px) and (orientation: landscape) {
-    .back-mybusiness {
-        margin-top: max(40px, calc(50svh - 313px - 102px - 29px));
-        margin-bottom: 20px;
-        width: 1000px;
-    }
-    .mybusiness-heading {
-        font-size: 56px;
-        padding-bottom: 0px;
-    }
-    .mybusiness-info {
-        font-size: 28px;
-    }
+/* Button hover effect consistency */
+.btn-upload:hover,
+.btn-preview:hover,
+.btn-edit:hover {
+    background-color: #d3d3d3; /* Màu xám nhạt hơn khi hover */
 }
