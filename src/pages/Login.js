@@ -34,11 +34,11 @@ function Login({ language, setLanguage, headerLinks }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/login', { email, password });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, { email, password });
       localStorage.setItem('token', response.data.token);
       navigate(response.data.redirect);
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed. Please try again.');
+      setError(err.response?.data?.error || 'Đăng nhập thất bại. Vui lòng thử lại.');
     }
   };
 

@@ -11,15 +11,15 @@ function Verify() {
         const verifyEmail = async () => {
             const token = new URLSearchParams(location.search).get('token');
             if (!token) {
-                setError('No verification token provided.');
+                setError('Không cung cấp token xác minh.');
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:3001/api/verify?token=${token}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/verify?token=${token}`);
                 localStorage.setItem('token', response.data.token);
                 navigate(response.data.redirect);
             } catch (err) {
-                setError(err.response?.data?.error || 'Verification failed.');
+                setError(err.response?.data?.error || 'Xác minh thất bại.');
             }
         };
         verifyEmail();
@@ -30,7 +30,7 @@ function Verify() {
             {error ? (
                 <h2>{error}</h2>
             ) : (
-                <h2>Verifying your email...</h2>
+                <h2>Đang xác minh email của bạn...</h2>
             )}
         </div>
     );

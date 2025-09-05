@@ -72,7 +72,7 @@ function Register({ language, setLanguage, headerLinks }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/register', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, {
         companyName,
         contactPerson,
         address,
@@ -83,9 +83,9 @@ function Register({ language, setLanguage, headerLinks }) {
         password,
       });
       setError(null);
-      alert('Registration successful! Please check your email to verify your account.');
+      alert('Đăng ký thành công! Vui lòng kiểm tra email để xác minh tài khoản.');
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed. Please try again.');
+      setError(err.response?.data?.error || 'Đăng ký thất bại. Vui lòng thử lại.');
     }
   };
 

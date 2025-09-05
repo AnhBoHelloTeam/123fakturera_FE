@@ -156,14 +156,14 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        setError('No authentication token found. Please log in.');
+        setError('Không tìm thấy token xác thực. Vui lòng đăng nhập.');
         navigate('/login');
         return;
       }
 
       try {
         console.log('Fetching user data with token:', token);
-        const response = await axios.get('http://localhost:3001/api/mybusiness', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/mybusiness`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log('API response:', response.data);
@@ -182,7 +182,7 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
         });
       } catch (err) {
         console.error('API error:', err.response?.data || err.message);
-        setError('Failed to fetch user data. ' + (err.response?.data?.error || err.message));
+        setError('Không thể lấy dữ liệu người dùng. ' + (err.response?.data?.error || err.message));
         if (err.response?.status === 401) {
           navigate('/login');
         }
@@ -205,52 +205,52 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
   const handleSave = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setError('No authentication token found. Please log in.');
+      setError('Không tìm thấy token xác thực. Vui lòng đăng nhập.');
       navigate('/login');
       return;
     }
 
     try {
-      const response = await axios.put('http://localhost:3001/api/mybusiness', userData, {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/mybusiness`, userData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log('Save response:', response.data);
       setUserData(response.data); // Update state with server response
       setError(null);
-      alert(t.save + ' successful!'); // Show success message
+      alert(t.save + ' thành công!'); // Show success message
     } catch (err) {
       console.error('Save error:', err.response?.data || err.message);
-      setError('Failed to save user data. ' + (err.response?.data?.error || err.message));
+      setError('Không thể lưu dữ liệu người dùng. ' + (err.response?.data?.error || err.message));
     }
   };
 
   const handleDelete = async () => {
-    if (!window.confirm(t.delete + '? This action cannot be undone.')) {
+    if (!window.confirm(t.delete + '? Hành động này không thể hoàn tác.')) {
       return;
     }
 
     const token = localStorage.getItem('token');
     if (!token) {
-      setError('No authentication token found. Please log in.');
+      setError('Không tìm thấy token xác thực. Vui lòng đăng nhập.');
       navigate('/login');
       return;
     }
 
     try {
-      await axios.delete('http://localhost:3001/api/mybusiness', {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/mybusiness`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.removeItem('token');
       navigate('/login');
-      alert(t.delete + ' successful!');
+      alert(t.delete + ' thành công!');
     } catch (err) {
       console.error('Delete error:', err.response?.data || err.message);
-      setError('Failed to delete account. ' + (err.response?.data?.error || err.message));
+      setError('Không thể xóa tài khoản. ' + (err.response?.data?.error || err.message));
     }
   };
 
   if (isLoading) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading">Đang tải...</div>;
   }
 
   return (

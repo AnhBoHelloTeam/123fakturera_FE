@@ -44,18 +44,18 @@ function PriceList({ language, setLanguage }) {
     const fetchProducts = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        setError(language === 'sv' ? 'Ingen autentiseringstoken hittades. Vänligen logga in.' : 'No authentication token found. Please log in.');
+        setError(language === 'sv' ? 'Ingen autentiseringstoken hittades. Vänligen logga in.' : 'Không tìm thấy token xác thực. Vui lòng đăng nhập.');
         navigate('/login');
         return;
       }
       try {
-        const response = await axios.get('http://localhost:3001/api/products', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProducts(response.data);
         setError(null);
       } catch (err) {
-        setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att hämta produkter.' : 'Failed to fetch products.'));
+        setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att hämta produkter.' : 'Không thể lấy danh sách sản phẩm.'));
         if (err.response?.status === 401) {
           navigate('/login');
         }
@@ -102,31 +102,31 @@ function PriceList({ language, setLanguage }) {
         description: formData.description || null,
       };
       if (!data.article_no || !data.name || !data.price) {
-        setError(language === 'sv' ? 'Artikelnummer, namn och pris är obligatoriska.' : 'Article number, name, and price are required.');
+        setError(language === 'sv' ? 'Artikelnummer, namn och pris är obligatoriska.' : 'Bài viết số, tên và giá là bắt buộc.');
         return;
       }
       if (formData.id) {
         // Update
-        await axios.put(`http://localhost:3001/api/products/${formData.id}`, data, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${formData.id}`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setSuccess(language === 'sv' ? 'Produkt uppdaterad framgångsrikt.' : 'Product updated successfully.');
+        setSuccess(language === 'sv' ? 'Produkt uppdaterad framgångsrikt.' : 'Sản phẩm được cập nhật thành công.');
       } else {
         // Create
-        await axios.post('http://localhost:3001/api/products', data, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setSuccess(language === 'sv' ? 'Produkt skapad framgångsrikt.' : 'Product created successfully.');
+        setSuccess(language === 'sv' ? 'Produkt skapad framgångsrikt.' : 'Sản phẩm được tạo thành công.');
       }
       setIsFormOpen(false);
       setFormData({ id: null, article_no: '', name: '', in_price: '', price: '', unit: '', in_stock: '', description: '' });
       setError(null);
-      const response = await axios.get('http://localhost:3001/api/products', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(response.data);
     } catch (err) {
-      setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att spara produkt.' : 'Failed to save product.'));
+      setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att spara produkt.' : 'Không thể lưu sản phẩm.'));
     }
     setTimeout(() => setSuccess(null), 3000);
   };
@@ -148,22 +148,22 @@ function PriceList({ language, setLanguage }) {
   };
 
   const handleDelete = async (index) => {
-    if (!window.confirm(language === 'sv' ? 'Är du säker på att du vill radera produkten?' : 'Are you sure you want to delete this product?')) {
+    if (!window.confirm(language === 'sv' ? 'Är du säker på att du vill radera produkten?' : 'Bạn có chắc chắn muốn xóa sản phẩm này?')) {
       return;
     }
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:3001/api/products/${products[index].id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${products[index].id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setSuccess(language === 'sv' ? 'Produkt raderad framgångsrikt.' : 'Product deleted successfully.');
-      const response = await axios.get('http://localhost:3001/api/products', {
+      setSuccess(language === 'sv' ? 'Produkt raderad framgångsrikt.' : 'Sản phẩm được xóa thành công.');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(response.data);
       closeDropdown();
     } catch (err) {
-      setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att radera produkt.' : 'Failed to delete product.'));
+      setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att radera produkt.' : 'Không thể xóa sản phẩm.'));
     }
     setTimeout(() => setSuccess(null), 3000);
   };

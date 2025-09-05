@@ -44,7 +44,7 @@ function Terms({ language, setLanguage }) {
         setLoading(false);
       } catch (err) {
         console.error('Error fetching terms:', err);
-        setError('Failed to load terms.');
+        setError('Không thể tải điều khoản.');
         setLoading(false);
       }
     };
@@ -58,7 +58,7 @@ function Terms({ language, setLanguage }) {
   return (
     <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
       {loading ? (
-        <p>Loading...</p>
+        <p>Đang tải...</p>
       ) : error ? (
         <p>{error}</p>
       ) : (
