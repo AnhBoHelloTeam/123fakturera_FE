@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from '../assets/priceListStyles.module.css';
 
 function PriceList({ language, setLanguage }) {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchArticle, setSearchArticle] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [openMenuIndex, setOpenMenuIndex] = useState(null); // State cho dropdown
-    const [priceData] = useState([
-        { articleNo: '1234567890', product: 'This is a test product with fifty characters this!', inPrice: '900500', price: '1500800', inStock: '2500600', unit: 'kilometers/hour', description: 'This is the description with fifty characters this' },
-        { articleNo: '1234567890', product: 'This is a test product with fifty characters this!', inPrice: '900500', price: '1500800', inStock: '2500600', unit: 'kilometers/hour', description: 'This is the description with fifty characters this' },
-        { articleNo: 'Sony DSLR 12345', product: 'Sony DSLR 12345', inPrice: '900500', price: '15000', inStock: '15000', unit: 'kilometers/hour', description: 'This is the description with fifty characters this' },
-        { articleNo: 'Random product', product: 'Random product', inPrice: '', price: '1234', inStock: '2500600', unit: 'kilometers/hour', description: 'This is the description with fifty characters this' },
-    ]);
+    const [openMenuIndex, setOpenMenuIndex] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        id: null,
+        name: '',
+        in_price: '',
+        price: '',
+        unit: '',
+        vat_rate: '',
+        quantity: '',
+    });
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
     const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
     const [isMobileLandscape, setIsMobileLandscape] = useState(window.innerWidth >= 481 && window.innerWidth < 768);
@@ -26,18 +33,38 @@ function PriceList({ language, setLanguage }) {
             setIsMobileLandscape(window.innerWidth >= 481 && window.innerWidth < 768);
             setIsMobilePortrait(window.innerWidth <= 480);
             setIsMenuOpen(false);
-            setOpenMenuIndex(null); // Đóng dropdown khi resize
+            setOpenMenuIndex(null);
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setError(language === 'sv' ? 'Ingen autentiseringstoken hittades. Vänligen logga in.' : 'No authentication token found. Please log in.');
+                navigate('/login');
+                return;
+            }
+            try {
+                const response = await axios.get('http://localhost:3001/api/products', {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setProducts(response.data);
+                setError(null);
+            } catch (err) {
+                setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att hämta produkter.' : 'Failed to fetch products.'));
+                if (err.response?.status === 401) {
+                    navigate('/login');
+                }
+            }
+        };
+        fetchProducts();
+    }, [navigate]);
+
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-    };
-
-    const handleArticleSearchChange = (e) => {
-        setSearchArticle(e.target.value);
     };
 
     const toggleMenu = () => {
@@ -56,14 +83,86 @@ function PriceList({ language, setLanguage }) {
         setOpenMenuIndex(null);
     };
 
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleCreateOrUpdate = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const data = {
+                name: formData.name,
+                in_price: formData.in_price ? parseFloat(formData.in_price) : null,
+                price: parseFloat(formData.price),
+                unit: formData.unit || null,
+                vat_rate: formData.vat_rate ? parseInt(formData.vat_rate) : null,
+                quantity: formData.quantity ? parseInt(formData.quantity) : null,
+            };
+            if (!data.name || !data.price) {
+                setError(language === 'sv' ? 'Namn och pris är obligatoriska.' : 'Name and price are required.');
+                return;
+            }
+            if (formData.id) {
+                // Update
+                await axios.put(`http://localhost:3001/api/products/${formData.id}`, data, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setSuccess(language === 'sv' ? 'Produkt uppdaterad framgångsrikt.' : 'Product updated successfully.');
+            } else {
+                // Create
+                await axios.post('http://localhost:3001/api/products', data, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setSuccess(language === 'sv' ? 'Produkt skapad framgångsrikt.' : 'Product created successfully.');
+            }
+            setIsFormOpen(false);
+            setFormData({ id: null, name: '', in_price: '', price: '', unit: '', vat_rate: '', quantity: '' });
+            setError(null);
+            const response = await axios.get('http://localhost:3001/api/products', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setProducts(response.data);
+        } catch (err) {
+            setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att spara produkt.' : 'Failed to save product.'));
+        }
+        setTimeout(() => setSuccess(null), 3000);
+    };
+
     const handleEdit = (index) => {
-        console.log(`Edit product at index ${index}`);
+        const product = products[index];
+        setFormData({
+            id: product.id,
+            name: product.name,
+            in_price: product.in_price || '',
+            price: product.price || '',
+            unit: product.unit || '',
+            vat_rate: product.vat_rate || '',
+            quantity: product.quantity || '',
+        });
+        setIsFormOpen(true);
         closeDropdown();
     };
 
-    const handleDelete = (index) => {
-        console.log(`Delete product at index ${index}`);
-        closeDropdown();
+    const handleDelete = async (index) => {
+        if (!window.confirm(language === 'sv' ? 'Är du säker på att du vill radera produkten?' : 'Are you sure you want to delete this product?')) {
+            return;
+        }
+        const token = localStorage.getItem('token');
+        try {
+            await axios.delete(`http://localhost:3001/api/products/${products[index].id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setSuccess(language === 'sv' ? 'Produkt raderad framgångsrikt.' : 'Product deleted successfully.');
+            const response = await axios.get('http://localhost:3001/api/products', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setProducts(response.data);
+            closeDropdown();
+        } catch (err) {
+            setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att radera produkt.' : 'Failed to delete product.'));
+        }
+        setTimeout(() => setSuccess(null), 3000);
     };
 
     const textLabels = {
@@ -81,22 +180,22 @@ function PriceList({ language, setLanguage }) {
             memberInvoicing: 'Medlemsfakturering',
             importExport: 'Import & Export',
             logOut: 'Logga ut',
-            searchArticleNo: 'Sök Artikel Nr.',
             searchProduct: 'Sök Produkt...',
             newProduct: 'Ny produkt',
             printList: 'Skriv ut lista',
             advancedMode: 'Avancerat läge',
-            articleNo: 'Artikel Nr.',
             productService: 'Produkt/Tjänst',
             inPrice: 'In Pris',
             price: 'Pris',
             unit: 'Enhet',
-            inStock: 'I Lager',
-            description: 'Beskrivning',
-            searchPlaceholder: 'Sök...',
-            close: 'Close',
-            editProduct: 'Edit Product',
-            deleteProduct: 'Delete Product',
+            vatRate: 'Moms (%)',
+            quantity: 'Antal',
+            close: 'Stäng',
+            editProduct: 'Redigera Produkt',
+            deleteProduct: 'Radera Produkt',
+            saveProduct: 'Spara Produkt',
+            cancel: 'Avbryt',
+            name: 'Namn',
         },
         en: {
             menu: 'Menu',
@@ -112,22 +211,22 @@ function PriceList({ language, setLanguage }) {
             memberInvoicing: 'Member Invoicing',
             importExport: 'Import & Export',
             logOut: 'Log Out',
-            searchArticleNo: 'Search Article No.',
             searchProduct: 'Search Product...',
             newProduct: 'New Product',
             printList: 'Print List',
             advancedMode: 'Advanced mode',
-            articleNo: 'Article No.',
             productService: 'Product/Service',
             inPrice: 'In Price',
             price: 'Price',
             unit: 'Unit',
-            inStock: 'In Stock',
-            description: 'Description',
-            searchPlaceholder: 'Search...',
+            vatRate: 'VAT Rate (%)',
+            quantity: 'Quantity',
             close: 'Close',
             editProduct: 'Edit Product',
             deleteProduct: 'Delete Product',
+            saveProduct: 'Save Product',
+            cancel: 'Cancel',
+            name: 'Name',
         },
     };
 
@@ -152,20 +251,18 @@ function PriceList({ language, setLanguage }) {
         if (isDesktop) {
             return (
                 <>
-                    <th>{t.articleNo} ↓</th>
                     <th>{t.productService} ↓</th>
                     <th>{t.inPrice}</th>
                     <th>{t.price}</th>
                     <th>{t.unit}</th>
-                    <th>{t.inStock}</th>
-                    <th>{t.description}</th>
+                    <th>{t.vatRate}</th>
+                    <th>{t.quantity}</th>
                     <th></th>
                 </>
             );
         } else if (isTablet) {
             return (
                 <>
-                    <th>{t.articleNo} ↓</th>
                     <th>{t.productService} ↓</th>
                     <th>{t.price}</th>
                     <th></th>
@@ -183,14 +280,17 @@ function PriceList({ language, setLanguage }) {
     };
 
     const getPriceRows = () => {
-        return priceData.map((item, index) => {
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        return filteredProducts.map((item, index) => {
             const isOpen = openMenuIndex === index;
             if (isMobilePortrait || isMobileLandscape) {
                 return (
-                    <tr key={index}>
+                    <tr key={item.id}>
                         <td>
                             <div className={styles.priceCellContent}>
-                                <input type="text" value={item.product} readOnly />
+                                <input type="text" value={item.name} readOnly />
                             </div>
                         </td>
                         <td><input type="text" value={item.price} readOnly /></td>
@@ -208,16 +308,10 @@ function PriceList({ language, setLanguage }) {
                 );
             } else if (isTablet) {
                 return (
-                    <tr key={index}>
+                    <tr key={item.id}>
                         <td>
                             <div className={styles.priceCellContent}>
-                                <span className={styles.priceArrowIcon}>→</span>
-                                <input type="text" value={item.articleNo} readOnly />
-                            </div>
-                        </td>
-                        <td>
-                            <div className={styles.priceCellContent}>
-                                <input type="text" value={item.product} readOnly />
+                                <input type="text" value={item.name} readOnly />
                             </div>
                         </td>
                         <td><input type="text" value={item.price} readOnly /></td>
@@ -235,23 +329,17 @@ function PriceList({ language, setLanguage }) {
                 );
             } else {
                 return (
-                    <tr key={index}>
+                    <tr key={item.id}>
                         <td>
                             <div className={styles.priceCellContent}>
-                                <span className={styles.priceArrowIcon}>→</span>
-                                <input type="text" value={item.articleNo} readOnly />
+                                <input type="text" value={item.name} readOnly />
                             </div>
                         </td>
-                        <td>
-                            <div className={styles.priceCellContent}>
-                                <input type="text" value={item.product} readOnly />
-                            </div>
-                        </td>
-                        <td><input type="text" value={item.inPrice || ''} readOnly /></td>
+                        <td><input type="text" value={item.in_price || ''} readOnly /></td>
                         <td><input type="text" value={item.price} readOnly /></td>
-                        <td><input type="text" value={item.unit} readOnly /></td>
-                        <td><input type="text" value={item.inStock} readOnly /></td>
-                        <td><input type="text" value={item.description} readOnly /></td>
+                        <td><input type="text" value={item.unit || ''} readOnly /></td>
+                        <td><input type="text" value={item.vat_rate || ''} readOnly /></td>
+                        <td><input type="text" value={item.quantity || ''} readOnly /></td>
                         <td style={{ position: 'relative' }}>
                             <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
                             {isOpen && (
@@ -350,24 +438,23 @@ function PriceList({ language, setLanguage }) {
                             <div className={styles.priceSearchBar}>
                                 <input
                                     type="text"
-                                    placeholder={t.searchArticleNo}
+                                    placeholder={t.searchProduct}
                                     value={searchTerm}
                                     onChange={handleSearchChange}
                                 />
                                 <span className={styles.priceSearchIcon}>🔍</span>
                             </div>
-                            <div className={styles.priceSearchBar}>
-                                <input
-                                    type="text"
-                                    placeholder={t.searchProduct}
-                                    value={searchArticle}
-                                    onChange={handleArticleSearchChange}
-                                />
-                                <span className={styles.priceSearchIcon}>🔍</span>
-                            </div>
                         </div>
                         <div className={styles.priceActionButtons}>
-                            <button className={`${styles.priceIconBtn} ${styles.newProduct}`}>
+                            <button
+                                className={`${styles.priceIconBtn} ${styles.newProduct}`}
+                                onClick={() => {
+                                    setFormData({ id: null, name: '', in_price: '', price: '', unit: '', vat_rate: '', quantity: '' });
+                                    setIsFormOpen(true);
+                                    setError(null);
+                                    setSuccess(null);
+                                }}
+                            >
                                 <span>+</span>
                                 {!(isMobileLandscape || isMobilePortrait) && <span>{t.newProduct}</span>}
                             </button>
@@ -381,6 +468,81 @@ function PriceList({ language, setLanguage }) {
                             </button>
                         </div>
                     </div>
+
+                    {isFormOpen && (
+                        <div className={styles.priceFormContainer}>
+                            <h3>{formData.id ? t.editProduct : t.newProduct}</h3>
+                            <div className={styles.priceForm}>
+                                <div className={styles.formGroup}>
+                                    <label>{t.name}</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleFormChange}
+                                        required
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label>{t.inPrice}</label>
+                                    <input
+                                        type="number"
+                                        name="in_price"
+                                        value={formData.in_price}
+                                        onChange={handleFormChange}
+                                        step="0.01"
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label>{t.price}</label>
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        value={formData.price}
+                                        onChange={handleFormChange}
+                                        required
+                                        step="0.01"
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label>{t.unit}</label>
+                                    <input
+                                        type="text"
+                                        name="unit"
+                                        value={formData.unit}
+                                        onChange={handleFormChange}
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label>{t.vatRate}</label>
+                                    <input
+                                        type="number"
+                                        name="vat_rate"
+                                        value={formData.vat_rate}
+                                        onChange={handleFormChange}
+                                        step="1"
+                                    />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label>{t.quantity}</label>
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        value={formData.quantity}
+                                        onChange={handleFormChange}
+                                        step="1"
+                                    />
+                                </div>
+                                <div className={styles.formActions}>
+                                    <button onClick={handleCreateOrUpdate}>{t.saveProduct}</button>
+                                    <button onClick={() => setIsFormOpen(false)}>{t.cancel}</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {error && <div className={styles.error}>{error}</div>}
+                    {success && <div className={styles.success}>{success}</div>}
 
                     <div className={styles.priceTableContainer}>
                         <table className={styles.priceTable}>
