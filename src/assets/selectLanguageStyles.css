@@ -1,42 +1,48 @@
-
 .select-language-content-root {
   align-items: center;
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  width: 100%;
+  min-height: calc(100svh - 80px); /* Trừ chiều cao header */
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .back-select-language {
-  background: #fff;
-  width: 550px;
-  max-width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  max-width: 550px;
   border-radius: 20px;
   color: #000;
-  padding: 2.5rem;
+  padding: clamp(1.5rem, 2vw, 2rem);
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  box-sizing: border-box;
 }
 
 .select-language-heading {
-  font-size: 1.8em;
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
   font-weight: 600;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .language-description {
-  font-size: 1em;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   color: #666;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 1.5vw, 1.5rem);
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .language-options {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 20px;
-  margin-top: 1rem;
+  gap: clamp(10px, 1.5vw, 15px);
+  margin-top: clamp(0.8rem, 1vw, 1rem);
 }
 
 .language-button {
@@ -44,18 +50,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 25px 20px;
+  gap: clamp(8px, 1vw, 10px);
+  padding: clamp(15px, 2vw, 20px);
   background-color: #f7f9fc;
   color: #000;
   border: 1px solid #e0e5ea;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
   font-weight: 500;
-  width: 180px;
+  width: 100%;
+  max-width: 180px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .language-button:hover {
@@ -70,7 +78,7 @@
 }
 
 .language-button .flag {
-  width: 80px;
+  width: clamp(60px, 15vw, 80px);
   height: auto;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -79,14 +87,15 @@
 .continue-button {
   background-color: #007bff;
   color: white;
-  padding: 12px 24px;
+  padding: clamp(10px, 1.5vw, 12px) clamp(20px, 2vw, 24px);
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
   font-weight: 500;
-  margin-top: 2.5rem;
+  margin-top: clamp(1.5rem, 2vw, 2rem);
   transition: background-color 0.3s ease;
+  width: clamp(120px, 50%, 200px);
 }
 
 .continue-button:hover {
@@ -94,33 +103,79 @@
 }
 
 .footer-description {
-  font-size: 0.9em;
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
   color: #888;
-  margin-top: 2rem;
+  margin-top: clamp(1rem, 1.5vw, 1.5rem);
+  overflow-wrap: break-word;
 }
 
 .error-span {
   color: red;
-  margin-top: 0.5rem;
+  margin-top: clamp(0.3rem, 0.5vw, 0.5rem);
   font-weight: 400;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  display: block;
 }
 
 /* Responsive design for select-language-specific styles */
-@media (max-width: 674px) {
+@media (max-width: 599px) {
   .back-select-language {
-    width: 90%;
-    padding: 1.5rem;
+    max-width: 100%;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin: 10px;
+    border-radius: 15px;
+  }
+  .select-language-heading {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+  }
+  .language-description {
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
+    margin-bottom: clamp(0.8rem, 1.2vw, 1rem);
   }
   .language-options {
     flex-direction: column;
+    gap: clamp(8px, 1vw, 12px);
   }
   .language-button {
-    width: 100%;
+    max-width: 100%;
+    padding: clamp(10px, 1.5vw, 15px);
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
   }
-  .select-language-heading {
-    font-size: 1.5em;
+  .language-button .flag {
+    width: clamp(50px, 12vw, 60px);
   }
   .continue-button {
-    width: 100%;
+    width: clamp(100px, 80%, 150px);
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
+  }
+  .footer-description {
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .back-select-language {
+    max-width: 90%;
+    padding: clamp(1.2rem, 2vw, 1.8rem);
+    margin: 15px auto;
+  }
+  .select-language-heading {
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  }
+  .language-description {
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  }
+  .language-options {
+    gap: clamp(8px, 1.2vw, 12px);
+  }
+  .language-button {
+    max-width: 160px;
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  }
+  .language-button .flag {
+    width: clamp(55px, 12vw, 70px);
+  }
+  .continue-button {
+    width: clamp(110px, 60%, 180px);
   }
 }

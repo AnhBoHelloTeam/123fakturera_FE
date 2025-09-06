@@ -25,23 +25,7 @@
   position: relative;
 }
 
-/* Responsive styles */
-@media (max-width: 1023px) {
-  .main-nav {
-    display: none;
-  }
-  .hamburger-menu {
-    display: block;
-  }
-  .home-header {
-    padding: clamp(5px, 1.2vw, 8px) clamp(8px, 1.5vw, 12px);
-  }
-  .home-header-right {
-    position: relative;
-    gap: 0;
-  }
-}
-
+/* Navigation styles */
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -141,11 +125,12 @@
   flex-wrap: wrap;
   max-width: 1600px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .left-content {
   text-align: center;
-  max-width: clamp(350px, 45%, 450px);
+  max-width: clamp(300px, 45%, 450px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,7 +139,7 @@
 }
 
 .left-content h1 {
-  font-size: clamp(2.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   font-weight: bold;
   margin-bottom: clamp(8px, 1.2vw, 12px);
   overflow-wrap: break-word;
@@ -162,7 +147,7 @@
 }
 
 .left-content p {
-  font-size: clamp(0.85rem, 2.5vw, 2rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.2rem);
   max-width: 95%;
   margin: 0 auto;
   overflow-wrap: break-word;
@@ -191,7 +176,7 @@
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  height: auto;
+  width: 100%;
 }
 
 .carousel-item {
@@ -218,6 +203,7 @@
   color: rgb(76, 71, 71);
   max-width: 1600px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .signup-form form {
@@ -233,7 +219,7 @@
 
 .signup-form h2 {
   color: red;
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   margin-top: 0;
   margin-bottom: clamp(6px, 1vw, 10px);
   padding: 0 clamp(8px, 1.5vw, 12px);
@@ -247,12 +233,13 @@
   border: 1px solid #ccc;
   border-radius: 25px;
   box-sizing: border-box;
+  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
 }
 
 .signup-form p {
-  font-size: clamp(0.75rem, 1vw, 0.8rem);
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
   margin: clamp(3px, 0.8vw, 5px) 0;
-  line-height: 1;
+  line-height: 1.4;
   text-align: start;
   padding: clamp(3px, 0.8vw, 5px) clamp(8px, 1.5vw, 12px);
   overflow-wrap: break-word;
@@ -266,12 +253,13 @@
   border-radius: 20px;
   cursor: pointer;
   width: clamp(100px, 50%, 150px);
-  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
   margin: 0 auto;
 }
 
 .signup-form input::placeholder {
   padding-left: 5px;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
 }
 
 /* Testimonial Section */
@@ -326,11 +314,13 @@
   position: relative;
   overflow: hidden;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .testimonial-carousel-inner {
   display: flex;
   transition: transform 0.6s ease-in-out;
+  width: 100%;
 }
 
 .testimonial-item {
@@ -426,6 +416,7 @@
   border: 2px solid #e0e0e0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .section-description {
@@ -446,7 +437,7 @@
 
 .feature-cards-v2 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: clamp(10px, 1.5vw, 15px);
   justify-content: center;
   padding: 0;
@@ -454,15 +445,15 @@
 
 .feature-card-v2 {
   background: #f9f9f9;
-  padding: clamp(12px, 2vw, 15px);
-  border-radius: 20px;
+  padding: clamp(10px, 1.5vw, 12px);
+  border-radius: 15px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .feature-card-v2 h5 {
-  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
   font-weight: 600;
   margin: 0;
   color: black;
@@ -502,6 +493,7 @@
   padding: clamp(15px, 2.5vw, 25px) 0;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .footer-v3 {
@@ -547,11 +539,6 @@
   .hamburger-menu {
     display: none;
   }
-  .home-header {
-    padding: clamp(6px, 1.5vw, 12px) clamp(10px, 2vw, 20px);
-  }
-
-  /* Bố cục cho màn hình lớn, hình ảnh và form nằm cạnh nhau */
   .main-content {
     flex-direction: row;
     justify-content: center;
@@ -559,24 +546,20 @@
     gap: 40px;
     padding: clamp(12px, 2.5vw, 25px);
   }
-
   .left-content {
     text-align: left;
     max-width: 450px;
   }
-
   .right-content {
     max-width: 450px;
     padding: 0;
   }
-
   .invoice-carousel {
     max-width: 100%;
     background-color: transparent;
     box-shadow: none;
     border: none;
   }
-
   .signup-form {
     padding: clamp(6px, 1.5vw, 12px);
   }
@@ -632,13 +615,14 @@
   .signup-form input {
     width: calc(100% - clamp(8px, 1.5vw, 12px));
     padding: clamp(5px, 0.8vw, 7px);
+    font-size: clamp(0.75rem, 1vw, 0.85rem);
   }
   .signup-form button {
     width: clamp(90px, 50%, 140px);
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
   }
   .signup-form p {
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
     padding: clamp(2px, 0.8vw, 4px) clamp(6px, 1.2vw, 10px);
   }
   .feature-cards-v2 {
@@ -656,8 +640,8 @@
   }
 }
 
-/* Phone landscape (480px–767px) */
-@media (min-width: 480px) and (max-width: 767px) {
+/* Phone (≤599px) */
+@media (max-width: 599px) {
   .main-nav {
     display: none;
   }
@@ -668,99 +652,25 @@
     padding: clamp(4px, 1vw, 6px) clamp(6px, 1.2vw, 10px);
   }
   .logo {
-    width: clamp(22px, 4vw, 28px);
+    width: clamp(20px, 5vw, 25px);
   }
   .main-content {
     flex-direction: column;
     padding: clamp(8px, 1.5vw, 12px);
   }
   .left-content {
-    margin-bottom: clamp(6px, 1.2vw, 10px);
-  }
-  .left-content h1 {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-  }
-  .left-content p {
-    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-  }
-  .right-content {
-    padding: clamp(6px, 1.2vw, 10px);
-  }
-  .invoice-carousel {
-    width: 100%;
-    max-width: clamp(250px, 95%, 320px);
-    margin: 0 auto;
-  }
-  .signup-form {
-    padding: clamp(4px, 1vw, 8px);
-  }
-  .signup-form form {
-    max-width: clamp(90%, 98%, 100%);
-    padding: clamp(6px, 1.2vw, 10px);
-  }
-  .signup-form h2 {
-    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-  }
-  .signup-form input {
-    width: calc(100% - clamp(6px, 1.2vw, 10px));
-    padding: clamp(4px, 0.8vw, 6px);
-  }
-  .signup-form button {
-    width: clamp(80px, 60%, 120px);
-    font-size: clamp(0.65rem, 1vw, 0.75rem);
-  }
-  .signup-form p {
-    font-size: clamp(0.65rem, 1vw, 0.75rem);
-    padding: clamp(2px, 0.8vw, 4px) clamp(5px, 1vw, 8px);
-  }
-  .feature-cards-v2 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(6px, 1vw, 10px);
-  }
-  .section-description {
-    max-width: clamp(95%, 98%, 100%);
-  }
-  .white-section {
-    padding: clamp(10px, 2vw, 15px) clamp(5px, 1vw, 8px);
-  }
-  .testimonial-item {
-    padding: 0 clamp(2%, 4vw, 5%);
-  }
-  .arrow {
-    font-size: clamp(10px, 1.5vw, 12px);
-    padding: clamp(4px, 0.8vw, 6px) clamp(5px, 1vw, 7px);
-  }
-}
-
-/* Phone portrait (<480px) */
-@media (max-width: 479px) {
-  .main-nav {
-    display: none;
-  }
-  .hamburger-menu {
-    display: block;
-  }
-  .home-header {
-    padding: clamp(3px, 1vw, 5px) clamp(5px, 1.5vw, 8px);
-  }
-  .logo {
-    width: clamp(20px, 5vw, 25px);
-  }
-  .main-content {
-    flex-direction: column;
-    padding: clamp(6px, 1.2vw, 10px);
-  }
-  .left-content {
     margin-bottom: clamp(5px, 1vw, 8px);
+    max-width: 100%;
   }
   .left-content h1 {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
   }
   .left-content p {
-    font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   }
   .right-content {
     padding: clamp(5px, 1vw, 8px);
+    max-width: 100%;
   }
   .invoice-carousel {
     width: 100%;
@@ -771,33 +681,40 @@
     padding: clamp(4px, 1vw, 6px);
   }
   .signup-form form {
-    max-width: clamp(95%, 98%, 100%);
-    padding: clamp(5px, 1vw, 8px);
+    max-width: 100%;
+    padding: clamp(6px, 1.2vw, 10px);
   }
   .signup-form h2 {
-    font-size: clamp(0.8rem, 1.8vw, 1rem);
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   }
   .signup-form input {
-    width: calc(100% - clamp(5px, 1vw, 8px));
+    width: calc(100% - clamp(6px, 1vw, 8px));
     padding: clamp(4px, 0.8vw, 6px);
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
   }
   .signup-form button {
-    width: clamp(80px, 80%, 100px);
-    font-size: clamp(0.6rem, 1vw, 0.7rem);
+    width: clamp(80px, 80%, 120px);
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
   }
   .signup-form p {
-    font-size: clamp(0.6rem, 1vw, 0.7rem);
+    font-size: clamp(0.65rem, 1vw, 0.7rem);
     padding: clamp(2px, 0.8vw, 3px) clamp(4px, 1vw, 6px);
   }
   .feature-cards-v2 {
-    grid-template-columns: 1fr;
-    gap: clamp(5px, 1vw, 8px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, 1vw, 8px);
+  }
+  .feature-card-v2 {
+    padding: clamp(8px, 1.2vw, 10px);
+  }
+  .feature-card-v2 h5 {
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
   }
   .section-description {
-    max-width: clamp(95%, 98%, 100%);
+    max-width: 100%;
   }
   .white-section {
-    padding: clamp(8px, 1.5vw, 12px) clamp(4px, 1vw, 6px);
+    padding: clamp(10px, 2vw, 15px) clamp(4px, 1vw, 6px);
   }
   .testimonial-item {
     padding: 0 clamp(2%, 3vw, 4%);
@@ -805,8 +722,5 @@
   .arrow {
     font-size: clamp(8px, 1.2vw, 10px);
     padding: clamp(3px, 0.8vw, 5px) clamp(4px, 0.8vw, 6px);
-  }
-  .feature-card-v2 {
-    padding: clamp(8px, 1.5vw, 10px);
   }
 }

@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import '../assets/selectLanguageStyles.css';
+import '../assets/commonStyles.css'; // Import commonStyles.css để sử dụng .background-fixed
 
 function SelectLanguage({ setLanguage }) {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function SelectLanguage({ setLanguage }) {
 
   return (
     <Layout language={selectedLanguage || 'en'} setLanguage={setLanguage} headerLinks={headerLinks}>
+      <div className="background-fixed"></div> {/* Thêm nền từ commonStyles.css */}
       <div className="select-language-content-root">
         <div className="back-select-language">
           <h2 className="select-language-heading">Choose Language</h2>
@@ -54,14 +56,14 @@ function SelectLanguage({ setLanguage }) {
               className={`language-button ${selectedLanguage === 'sv' ? 'selected' : ''}`}
               onClick={() => handleLanguageSelect('sv')}
             >
-              <img src="https://storage.123fakturera.se/public/flags/SE.png" alt="Swedish" className="flag" />
+              <img src="https://storage.123fakturera.se/public/flags/SE.png" alt="Swedish" className="flag" loading="lazy" />
               Svenska
             </button>
             <button
               className={`language-button ${selectedLanguage === 'en' ? 'selected' : ''}`}
               onClick={() => handleLanguageSelect('en')}
             >
-              <img src="https://storage.123fakturera.se/public/flags/GB.png" alt="English" className="flag" />
+              <img src="https://storage.123fakturera.se/public/flags/GB.png" alt="English" className="flag" loading="lazy" />
               English
             </button>
           </div>
