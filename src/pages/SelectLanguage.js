@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import '../assets/selectLanguageStyles.css';
-import '../assets/commonStyles.css'; // Import commonStyles.css để sử dụng .background-fixed
+import '../assets/commonStyles.css';
 
 function SelectLanguage({ setLanguage }) {
   const navigate = useNavigate();
@@ -30,21 +30,18 @@ function SelectLanguage({ setLanguage }) {
 
   const handleLanguageSelect = (lang) => {
     setSelectedLanguage(lang);
+    setLanguage(lang);
+    localStorage.setItem('language', lang); // Lưu ngôn ngữ
     setError(null);
-  };
-
-  const handleContinue = () => {
-    if (selectedLanguage) {
-      setLanguage(selectedLanguage);
+    // Tự động redirect đến /mybusiness
+    setTimeout(() => {
       navigate('/mybusiness');
-    } else {
-      setError('Please select a language.');
-    }
+    }, 500); // Delay nhẹ để cải thiện UX
   };
 
   return (
     <Layout language={selectedLanguage || 'en'} setLanguage={setLanguage} headerLinks={headerLinks}>
-      <div className="background-fixed"></div> {/* Thêm nền từ commonStyles.css */}
+      <div className="background-fixed"></div>
       <div className="select-language-content-root">
         <div className="back-select-language">
           <h2 className="select-language-heading">Choose Language</h2>
@@ -71,9 +68,6 @@ function SelectLanguage({ setLanguage }) {
             You can change this at any time in My Business settings. There you can also use different language for the invoice and the user interface.
           </p>
           {error && <span className="error-span">{error}</span>}
-          <button className="continue-button" onClick={handleContinue}>
-            Continue
-          </button>
         </div>
       </div>
     </Layout>
