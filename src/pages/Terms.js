@@ -57,22 +57,25 @@ function Terms({ language, setLanguage }) {
 
   return (
     <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
-      {loading ? (
-        <p>Đang tải...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="terms-main">
-          <div className="terms-title">{title}</div>
-          <button className="terms-button" onClick={handleClose}>
-            {button}
-          </button>
-          <TermsContent content={context} />
-          <button className="terms-button" onClick={handleClose}>
-            {button}
-          </button>
-        </div>
-      )}
+      <div className="background-fixed" />
+      <div className="container">
+        {loading ? (
+          <p>Đang tải...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <div className="terms-main">
+            <div className="terms-title">{title}</div>
+            <button className="terms-button" onClick={handleClose}>
+              {button}
+            </button>
+            <TermsContent content={context} />
+            <button className="terms-button" onClick={handleClose}>
+              {button}
+            </button>
+          </div>
+        )}
+      </div>
     </Layout>
   );
 }

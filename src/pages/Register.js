@@ -56,7 +56,7 @@ function Register({ language, setLanguage, headerLinks }) {
         <p>Du kan använda och prova 123 Fakturera helt gratis i 14 dagar.</p>
         <p>Detta är en äkta fullversion, så att du kan skicka 1000 fakturor eller mer, helt gratis.</p>
         <p>123 Fakturera är så lätt och självförklarande att chansen för att du kommer att behöva support är minimal, men om du skulle behöva support, så är vi här för dig, med vårt kontor bemannat större delen av dygnet. Efter provperioden så fortsätter abonnemanget och kostar 99 kronor exkl. moms per månad, som faktureras årligen. Om du inte vill behålla programmet, så är det bara att avbryta provperioden genom att ge besked inom 14 dagar från i dag.</p>
-        <p>Klicka Fakturera Nu för att fakturera och för att godkänna villkoren, och din första faktura är normalt klar till att skickas inom 5-10 minuter.</p>
+        <p>Klicka Fakturera Nu för att fakturera och för att godkänna villkoren, và din första faktura är normalt klar till att skickas inom 5-10 minuter.</p>
       </>
     ),
     en: (
@@ -95,154 +95,157 @@ function Register({ language, setLanguage, headerLinks }) {
 
   return (
     <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
-      <div className="register-content-root">
-        <div className="back-register">
-          <form onSubmit={handleSubmit} noValidate autoComplete="off">
-            <h2 className="register-heading">{formTitles[language]}</h2>
-            <section className="register-section">
-              <div className="register-input-field">
-                <label htmlFor="companyName" className="register-label">
-                  {formLabels[language].companyName}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="companyName"
-                  required
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder={formLabels[language].companyName}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="contactPerson" className="register-label">
-                  {formLabels[language].contactPerson}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="contactPerson"
-                  required
-                  value={contactPerson}
-                  onChange={(e) => setContactPerson(e.target.value)}
-                  placeholder={formLabels[language].contactPerson}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="address" className="register-label">
-                  {formLabels[language].address}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="address"
-                  required
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder={formLabels[language].address}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="postNumber" className="register-label">
-                  {formLabels[language].postNumber}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="postNumber"
-                  required
-                  value={postNumber}
-                  onChange={(e) => setPostNumber(e.target.value)}
-                  placeholder={formLabels[language].postNumber}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="city" className="register-label">
-                  {formLabels[language].city}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="city"
-                  required
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  placeholder={formLabels[language].city}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="mobile" className="register-label">
-                  {formLabels[language].mobile}
-                </label>
-                <input
-                  className="register-input"
-                  type="text"
-                  id="mobile"
-                  required
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  placeholder={formLabels[language].mobile}
-                />
-              </div>
-              <div className="register-input-field">
-                <label htmlFor="email" className="register-label">
-                  {formLabels[language].email}
-                </label>
-                <input
-                  className="register-input"
-                  type="email"
-                  id="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={formLabels[language].email}
-                  autoComplete="on"
-                />
-              </div>
-              <span className="error-span">{error}</span>
-              <div className="register-input-field">
-                <label htmlFor="password" className="register-label">
-                  {formLabels[language].password}
-                </label>
-                <div className="password-input-div">
+      <div className="background-fixed" />
+      <div className="container">
+        <div className="register-content-root">
+          <div className="back-register">
+            <form onSubmit={handleSubmit} noValidate autoComplete="off">
+              <h2 className="register-heading">{formTitles[language]}</h2>
+              <section className="register-section">
+                <div className="register-input-field">
+                  <label htmlFor="companyName" className="register-label">
+                    {formLabels[language].companyName}
+                  </label>
                   <input
                     className="register-input"
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
+                    type="text"
+                    id="companyName"
                     required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={formLabels[language].password}
-                  />
-                  <img
-                    id="show-password-img"
-                    src="https://storage.123fakturera.se/public/icons/show_password.png"
-                    alt="Show password"
-                    onClick={togglePasswordVisibility}
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    placeholder={formLabels[language].companyName}
                   />
                 </div>
+                <div className="register-input-field">
+                  <label htmlFor="contactPerson" className="register-label">
+                    {formLabels[language].contactPerson}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="text"
+                    id="contactPerson"
+                    required
+                    value={contactPerson}
+                    onChange={(e) => setContactPerson(e.target.value)}
+                    placeholder={formLabels[language].contactPerson}
+                  />
+                </div>
+                <div className="register-input-field">
+                  <label htmlFor="address" className="register-label">
+                    {formLabels[language].address}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="text"
+                    id="address"
+                    required
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder={formLabels[language].address}
+                  />
+                </div>
+                <div className="register-input-field">
+                  <label htmlFor="postNumber" className="register-label">
+                    {formLabels[language].postNumber}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="text"
+                    id="postNumber"
+                    required
+                    value={postNumber}
+                    onChange={(e) => setPostNumber(e.target.value)}
+                    placeholder={formLabels[language].postNumber}
+                  />
+                </div>
+                <div className="register-input-field">
+                  <label htmlFor="city" className="register-label">
+                    {formLabels[language].city}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="text"
+                    id="city"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder={formLabels[language].city}
+                  />
+                </div>
+                <div className="register-input-field">
+                  <label htmlFor="mobile" className="register-label">
+                    {formLabels[language].mobile}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="text"
+                    id="mobile"
+                    required
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    placeholder={formLabels[language].mobile}
+                  />
+                </div>
+                <div className="register-input-field">
+                  <label htmlFor="email" className="register-label">
+                    {formLabels[language].email}
+                  </label>
+                  <input
+                    className="register-input"
+                    type="email"
+                    id="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={formLabels[language].email}
+                    autoComplete="on"
+                  />
+                </div>
+                <span className="error-span">{error}</span>
+                <div className="register-input-field">
+                  <label htmlFor="password" className="register-label">
+                    {formLabels[language].password}
+                  </label>
+                  <div className="password-input-div">
+                    <input
+                      className="register-input"
+                      type={showPassword ? 'text' : 'password'}
+                      id="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder={formLabels[language].password}
+                    />
+                    <img
+                      id="show-password-img"
+                      src="https://storage.123fakturera.se/public/icons/show_password.png"
+                      alt="Show password"
+                      onClick={togglePasswordVisibility}
+                    />
+                  </div>
+                </div>
+                <span className="error-span"></span>
+                <div className="register-info">{registerInfo[language]}</div>
+              </section>
+              <div className="Register-Button-div">
+                <button type="submit" className="Register-Button">
+                  {buttons[language].register}
+                </button>
               </div>
-              <span className="error-span"></span>
-              <div className="register-info">{registerInfo[language]}</div>
-            </section>
-            <div className="Register-Button-div">
-              <button type="submit" className="Register-Button">
-                {buttons[language].register}
-              </button>
-            </div>
-            <section className="gotodifferntlink">
-              <a
-                href="/login"
-                className="register-login-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/login');
-                }}
-              >
-                {language === 'sv' ? 'Har du redan ett konto? Logga in' : 'Already have an account? Log in'}
-              </a>
-            </section>
-          </form>
+              <section className="gotodifferntlink">
+                <a
+                  href="/login"
+                  className="register-login-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/login');
+                  }}
+                >
+                  {language === 'sv' ? 'Har du redan ett konto? Logga in' : 'Already have an account? Log in'}
+                </a>
+              </section>
+            </form>
+          </div>
         </div>
       </div>
     </Layout>

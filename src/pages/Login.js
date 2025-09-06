@@ -48,85 +48,88 @@ function Login({ language, setLanguage, headerLinks }) {
 
   return (
     <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
-      <div className="login-content-root">
-        <div className="back-login">
-          <form onSubmit={handleSubmit} noValidate autoComplete="off">
-            <h2 className="login-heading">{formTitles[language]}</h2>
-            <section className="login-section">
-              <div className="login-email">
-                <div>
-                  <label htmlFor="email" className="login-email-label">
-                    {formLabels[language].email}
-                  </label>
-                </div>
-                <input
-                  className="login-input"
-                  type="email"
-                  id="email"
-                  required
-                  name="username"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={formLabels[language].email}
-                  autoComplete="on"
-                />
-              </div>
-              <span className="email-error-span error-span">{error}</span>
-              <div className="login-password">
-                <div>
-                  <label htmlFor="password" className="login-password-label">
-                    {formLabels[language].password}
-                  </label>
-                </div>
-                <div className="password-input-div">
+      <div className="background-fixed" />
+      <div className="container">
+        <div className="login-content-root">
+          <div className="back-login">
+            <form onSubmit={handleSubmit} noValidate autoComplete="off">
+              <h2 className="login-heading">{formTitles[language]}</h2>
+              <section className="login-section">
+                <div className="login-email">
+                  <div>
+                    <label htmlFor="email" className="login-email-label">
+                      {formLabels[language].email}
+                    </label>
+                  </div>
                   <input
                     className="login-input"
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
+                    type="email"
+                    id="email"
                     required
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={formLabels[language].password}
-                  />
-                  <img
-                    id="show-password-img"
-                    src="https://storage.123fakturera.se/public/icons/show_password.png"
-                    alt="Show password"
-                    onClick={togglePasswordVisibility}
+                    name="username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={formLabels[language].email}
+                    autoComplete="on"
                   />
                 </div>
+                <span className="email-error-span error-span">{error}</span>
+                <div className="login-password">
+                  <div>
+                    <label htmlFor="password" className="login-password-label">
+                      {formLabels[language].password}
+                    </label>
+                  </div>
+                  <div className="password-input-div">
+                    <input
+                      className="login-input"
+                      type={showPassword ? 'text' : 'password'}
+                      id="password"
+                      required
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder={formLabels[language].password}
+                    />
+                    <img
+                      id="show-password-img"
+                      src="https://storage.123fakturera.se/public/icons/show_password.png"
+                      alt="Show password"
+                      onClick={togglePasswordVisibility}
+                    />
+                  </div>
+                </div>
+                <span className="password-error-span error-span"></span>
+              </section>
+              <div className="Login-Button-div">
+                <button type="submit" className="Login-Button">
+                  {buttons[language].login}
+                </button>
               </div>
-              <span className="password-error-span error-span"></span>
-            </section>
-            <div className="Login-Button-div">
-              <button type="submit" className="Login-Button">
-                {buttons[language].login}
-              </button>
-            </div>
-            <section className="gotodifferntlink">
-              <a
-                href="/register"
-                className="login-new-customer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/register');
-                }}
-              >
-                {formLinks[language].register}
-              </a>
-              <a
-                href="/forgot-password"
-                className="login-forgot-password"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/forgot-password');
-                }}
-              >
-                {formLinks[language].forgot}
-              </a>
-            </section>
-          </form>
+              <section className="gotodifferntlink">
+                <a
+                  href="/register"
+                  className="login-new-customer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/register');
+                  }}
+                >
+                  {formLinks[language].register}
+                </a>
+                <a
+                  href="/forgot-password"
+                  className="login-forgot-password"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/forgot-password');
+                  }}
+                >
+                  {formLinks[language].forgot}
+                </a>
+              </section>
+            </form>
+          </div>
         </div>
       </div>
     </Layout>
