@@ -33,6 +33,13 @@
   cursor: pointer;
 }
 
+/* Ẩn nút menu trên desktop */
+@media (min-width: 1024px) {
+  .menuIcon {
+    display: none; /* Ẩn nút menu trên desktop */
+  }
+}
+
 .priceHeaderLeft .priceLogo {
   width: clamp(30px, 2vw, 50px);
   height: clamp(30px, 2vw, 50px);
