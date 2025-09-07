@@ -173,22 +173,23 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: clamp(30px, 5vh, 40px);
+  margin-top: clamp(20px, 3vh, 30px);
 }
 
 .priceMobileMenuContent li {
-  margin-bottom: clamp(5px, 1vh, 10px);
+  margin-bottom: clamp(2px, 0.5vh, 5px);
 }
 
 .priceMobileMenuContent li a {
   display: flex;
   align-items: center;
-  gap: clamp(5px, 1vw, 10px);
+  gap: clamp(3px, 0.5vw, 5px);
   color: #555;
   text-decoration: none;
-  padding: clamp(5px, 1vh, 10px);
-  border-radius: 10px;
+  padding: clamp(3px, 0.5vh, 6px);
+  border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
+  font-size: clamp(0.8em, 1vw, 0.9em);
   overflow-wrap: break-word;
 }
 
@@ -254,18 +255,18 @@
 
 .priceSidebar {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: clamp(10px, 2vh, 20px);
+  padding: clamp(8px, 1.5vh, 15px);
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
 }
 
 .priceSidebarHeading {
-  font-size: clamp(1.2em, 1.5vw, 1.5em);
+  font-size: clamp(1em, 1.2vw, 1.2em);
   color: #333;
-  padding-bottom: clamp(5px, 1vh, 10px);
+  padding-bottom: clamp(3px, 0.5vh, 8px);
   border-bottom: 1px solid #ddd;
-  margin-bottom: clamp(10px, 1.5vh, 20px);
+  margin-bottom: clamp(8px, 1vh, 15px);
 }
 
 .priceSidebar ul {
@@ -275,18 +276,19 @@
 }
 
 .priceSidebar li {
-  margin-bottom: clamp(5px, 1vh, 10px);
+  margin-bottom: clamp(2px, 0.5vh, 5px);
 }
 
 .priceSidebar li a {
   display: flex;
   align-items: center;
-  gap: clamp(5px, 1vw, 10px);
+  gap: clamp(3px, 0.5vw, 5px);
   color: #555;
   text-decoration: none;
-  padding: clamp(5px, 1vh, 10px);
-  border-radius: 10px;
+  padding: clamp(3px, 0.5vh, 6px);
+  border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
+  font-size: clamp(0.8em, 1vw, 0.9em);
   overflow-wrap: break-word;
 }
 
@@ -302,7 +304,7 @@
 }
 
 .priceSidebarIcon {
-  font-size: clamp(1em, 1.2vw, 1.2em);
+  font-size: clamp(0.9em, 1.1vw, 1.1em);
 }
 
 /* Price List Area */
@@ -315,27 +317,23 @@
 }
 
 .priceControls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Chia đều 3 khu vực */
   gap: clamp(10px, 1.5vw, 20px);
   margin-bottom: clamp(10px, 1.5vh, 20px);
   flex-shrink: 0;
+  align-items: center;
 }
 
 .priceSearchInputs {
   display: flex;
   flex-direction: column;
   gap: clamp(5px, 1vw, 10px);
-  flex-grow: 1;
-  min-width: 0;
 }
 
 .priceSearchBar {
   position: relative;
   flex-grow: 1;
-  min-width: 0;
 }
 
 .priceSearchBar input {
@@ -356,10 +354,16 @@
   color: #888;
 }
 
+.priceSpacer {
+  flex-grow: 1;
+  min-width: 0;
+}
+
 .priceActionButtons {
   display: flex;
   align-items: center;
   gap: clamp(5px, 1vw, 10px);
+  justify-content: flex-end; /* Căn nút sang phải */
   min-width: 0;
 }
 
@@ -419,15 +423,6 @@
   text-overflow: ellipsis;
 }
 
-.priceThead th:nth-child(1) { width: 15%; } /* Article No. */
-.priceThead th:nth-child(2) { width: 20%; } /* Product/Service */
-.priceThead th:nth-child(3) { width: 10%; } /* In Price */
-.priceThead th:nth-child(4) { width: 10%; } /* Price */
-.priceThead th:nth-child(5) { width: 10%; } /* Unit */
-.priceThead th:nth-child(6) { width: 10%; } /* In Stock */
-.priceThead th:nth-child(7) { width: 25%; } /* Description */
-.priceThead th:nth-child(8) { width: 40px; } /* Options */
-
 .priceTbody tr {
   border-bottom: 1px solid #eee;
 }
@@ -479,8 +474,7 @@
 
 .priceMoreOptions {
   background-color: transparent;
-  border: 1px solid #ccc;
-  border-radius: 50%;
+  border: none; /* Bỏ viền */
   width: clamp(30px, 3vw, 40px);
   height: clamp(30px, 3vw, 40px);
   display: flex;
@@ -488,6 +482,7 @@
   justify-content: center;
   font-size: clamp(1.2em, 1.5vw, 1.5em);
   cursor: pointer;
+  border-radius: 0; /* Đã bỏ viền tròn từ trước */
 }
 
 /* Form Styles */
@@ -591,15 +586,25 @@
   .priceListArea {
     padding-left: clamp(10px, 2vw, 20px);
   }
+  .priceControls {
+    grid-template-columns: 1fr; /* Chuyển thành 1 cột trên tablet */
+  }
+  .priceSpacer {
+    display: none; /* Ẩn ô trống trên tablet */
+  }
+  .priceActionButtons {
+    justify-content: center;
+    margin-top: clamp(10px, 1.5vw, 20px);
+  }
   .priceTableContainer {
     overflow-x: auto;
   }
-  .priceThead th:nth-child(1) { width: 20%; } /* Article No. */
+  .priceThead th:nth-child(1) { width: 10%; } /* Article No. */
   .priceThead th:nth-child(2) { width: 30%; } /* Product/Service */
-  .priceThead th:nth-child(3) { width: 20%; } /* Price */
-  .priceThead th:nth-child(4) { width: 15%; } /* Unit */
-  .priceThead th:nth-child(5) { width: 15%; } /* In Stock */
-  .priceThead th:nth-child(6) { width: 40px; } /* Options */
+  .priceThead th:nth-child(3) { width: 10%; } /* Price */
+  .priceThead th:nth-child(4) { width: 10%; } /* Unit */
+  .priceThead th:nth-child(5) { width: 10%; } /* In Stock */
+  .priceThead th:nth-child(6) { width: 30px; } /* Options */
 }
 
 @media (max-width: 768px) {
@@ -622,16 +627,17 @@
     width: 100%;
   }
   .priceControls {
-    flex-direction: column;
-    gap: clamp(10px, 1.5vw, 15px);
+    grid-template-columns: 1fr; /* Chuyển thành 1 cột trên mobile */
   }
-  .priceSearchInputs {
-    flex-direction: column;
-    width: 100%;
+  .priceSpacer {
+    display: none; /* Ẩn ô trống trên mobile */
   }
   .priceActionButtons {
+    justify-content: center;
+    margin-top: clamp(10px, 1.5vw, 20px);
+  }
+  .priceSearchInputs {
     width: 100%;
-    justify-content: space-around;
   }
   .priceTableContainer {
     overflow-x: auto;

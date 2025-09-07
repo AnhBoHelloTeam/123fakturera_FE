@@ -26,7 +26,7 @@ function PriceList({ language, setLanguage }) {
   const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
   const [isMobileLandscape, setIsMobileLandscape] = useState(window.innerWidth >= 481 && window.innerWidth < 768);
   const [isMobilePortrait, setIsMobilePortrait] = useState(window.innerWidth <= 480);
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // State cho dropdown ngôn ngữ
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,7 +36,7 @@ function PriceList({ language, setLanguage }) {
       setIsMobilePortrait(window.innerWidth <= 480);
       setIsMenuOpen(false);
       setOpenMenuIndex(null);
-      setIsLanguageDropdownOpen(false); // Đóng dropdown khi thay đổi kích thước màn hình
+      setIsLanguageDropdownOpen(false);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -256,33 +256,33 @@ function PriceList({ language, setLanguage }) {
     if (isDesktop) {
       return (
         <>
-          <th>{t.articleNo} ↓</th>
-          <th>{t.productService}</th>
-          <th>{t.inPrice}</th>
-          <th>{t.price}</th>
-          <th>{t.unit}</th>
-          <th>{t.inStock}</th>
-          <th>{t.description}</th>
-          <th></th>
+          <th style={{ width: '8%' }}>{t.articleNo} ↓</th>
+          <th style={{ width: '25%' }}>{t.productService}</th>
+          <th style={{ width: '8%' }}>{t.inPrice}</th>
+          <th style={{ width: '8%' }}>{t.price}</th>
+          <th style={{ width: '8%' }}>{t.unit}</th>
+          <th style={{ width: '8%' }}>{t.inStock}</th>
+          <th style={{ width: '35%' }}>{t.description}</th>
+          <th style={{ width: '40px' }}></th>
         </>
       );
     } else if (isTablet) {
       return (
         <>
-          <th>{t.articleNo} ↓</th>
-          <th>{t.productService}</th>
-          <th>{t.price}</th>
-          <th>{t.unit}</th>
-          <th>{t.inStock}</th>
-          <th></th>
+          <th style={{ width: '10%' }}>{t.articleNo} ↓</th>
+          <th style={{ width: '30%' }}>{t.productService}</th>
+          <th style={{ width: '10%' }}>{t.price}</th>
+          <th style={{ width: '10%' }}>{t.unit}</th>
+          <th style={{ width: '10%' }}>{t.inStock}</th>
+          <th style={{ width: '30px' }}></th>
         </>
       );
     } else {
       return (
         <>
-          <th>{t.productService}</th>
-          <th>{t.price}</th>
-          <th></th>
+          <th style={{ width: '60%' }}>{t.productService}</th>
+          <th style={{ width: '30%' }}>{t.price}</th>
+          <th style={{ width: '40px' }}></th>
         </>
       );
     }
@@ -400,7 +400,6 @@ function PriceList({ language, setLanguage }) {
           <button className={styles.menuIcon} onClick={toggleMenu}>☰</button>
           {isDesktop && (
             <div>
-              <img src="logo.png" alt="Logo" className={styles.priceLogo} />
               <div className={styles.priceUserProfile}>
                 <img src="https://storage.123fakturere.no/public/avatars/user_avatar.png" alt="User Avatar" className={styles.userAvatar} />
                 <div className={styles.priceUserInfo}>
@@ -416,7 +415,6 @@ function PriceList({ language, setLanguage }) {
             <div className={styles.priceLanguageDropdown} onClick={toggleLanguageDropdown}>
               <span>{currentLanguage.name}</span>
               <img src={currentLanguage.flag} alt={currentLanguage.name} className={styles.priceFlag} />
-              <span className={styles.priceDropdownArrow}>▼</span>
             </div>
             {isLanguageDropdownOpen && (
               <div className={styles.priceDropdownMenu}>
@@ -503,6 +501,7 @@ function PriceList({ language, setLanguage }) {
                 <span className={styles.priceSearchIcon}>🔍</span>
               </div>
             </div>
+            <div className={styles.priceSpacer}></div>
             <div className={styles.priceActionButtons}>
               <button
                 className={`${styles.priceIconBtn} ${styles.newProduct}`}
