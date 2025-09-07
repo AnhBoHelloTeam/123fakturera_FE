@@ -26,6 +26,7 @@ function PriceList({ language, setLanguage }) {
   const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
   const [isMobileLandscape, setIsMobileLandscape] = useState(window.innerWidth >= 481 && window.innerWidth < 768);
   const [isMobilePortrait, setIsMobilePortrait] = useState(window.innerWidth <= 480);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false); // State cho dropdown ngôn ngữ
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,6 +36,7 @@ function PriceList({ language, setLanguage }) {
       setIsMobilePortrait(window.innerWidth <= 480);
       setIsMenuOpen(false);
       setOpenMenuIndex(null);
+      setIsLanguageDropdownOpen(false); // Đóng dropdown khi thay đổi kích thước màn hình
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -106,13 +108,11 @@ function PriceList({ language, setLanguage }) {
         return;
       }
       if (formData.id) {
-        // Update
         await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${formData.id}`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSuccess(language === 'sv' ? 'Produkt uppdaterad framgångsrikt.' : 'Sản phẩm được cập nhật thành công.');
       } else {
-        // Create
         await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -221,7 +221,7 @@ function PriceList({ language, setLanguage }) {
       advancedMode: 'Advanced mode',
       articleNo: 'Article No.',
       productService: 'Product/Service',
-      inPrice: 'InRobin Price',
+      inPrice: 'In Price',
       price: 'Price',
       unit: 'Unit',
       inStock: 'In Stock',
@@ -377,35 +377,63 @@ function PriceList({ language, setLanguage }) {
     });
   };
 
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
+
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  const languages = [
+    { code: 'en', name: 'English', flag: 'https://storage.123fakturere.no/public/flags/GB.png' },
+    { code: 'sv', name: 'Swedish', flag: 'https://storage.123fakturere.no/public/flags/SE.png' },
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === language);
+
   return (
     <div className={styles.priceListContainer}>
       <header className={styles.priceHeader}>
         <div className={styles.priceHeaderLeft}>
           <button className={styles.menuIcon} onClick={toggleMenu}>☰</button>
           {isDesktop && (
-            <div className={styles.priceUserProfile}>
-              <img src="https://storage.123fakturere.no/public/avatars/user_avatar.png" alt="User Avatar" className={styles.userAvatar} />
-              <div className={styles.priceUserInfo}>
-                <span>John Andre</span>
-                <span>Storford AS</span>
+            <div>
+              <img src="logo.png" alt="Logo" className={styles.priceLogo} />
+              <div className={styles.priceUserProfile}>
+                <img src="https://storage.123fakturere.no/public/avatars/user_avatar.png" alt="User Avatar" className={styles.userAvatar} />
+                <div className={styles.priceUserInfo}>
+                  <span>John Andre</span>
+                  <span>Storford AS</span>
+                </div>
               </div>
             </div>
           )}
         </div>
         <div className={styles.priceHeaderRight}>
           <div className={styles.priceLanguageSwitcher}>
-            <img
-              src="https://storage.123fakturere.no/public/flags/GB.png"
-              alt="English"
-              className={language === 'en' ? `${styles.priceFlag} ${styles.active}` : styles.priceFlag}
-              onClick={() => setLanguage('en')}
-            />
-            <img
-              src="https://storage.123fakturere.no/public/flags/SE.png"
-              alt="Swedish"
-              className={language === 'sv' ? `${styles.priceFlag} ${styles.active}` : styles.priceFlag}
-              onClick={() => setLanguage('sv')}
-            />
+            <div className={styles.priceLanguageDropdown} onClick={toggleLanguageDropdown}>
+              <span>{currentLanguage.name}</span>
+              <img src={currentLanguage.flag} alt={currentLanguage.name} className={styles.priceFlag} />
+              <span className={styles.priceDropdownArrow}>▼</span>
+            </div>
+            {isLanguageDropdownOpen && (
+              <div className={styles.priceDropdownMenu}>
+                {languages
+                  .filter(lang => lang.code !== language)
+                  .map(lang => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={styles.priceLanguageOption}
+                    >
+                      <img src={lang.flag} alt={lang.name} className={styles.priceFlag} />
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -460,6 +488,15 @@ function PriceList({ language, setLanguage }) {
                 <input
                   type="text"
                   placeholder={t.searchProduct}
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
+                <span className={styles.priceSearchIcon}>🔍</span>
+              </div>
+              <div className={styles.priceSearchBar}>
+                <input
+                  type="text"
+                  placeholder="Search Article No..."
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
