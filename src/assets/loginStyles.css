@@ -16,12 +16,16 @@
 .back-login {
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-  max-width: 750px;
-  border-radius: 20px;
+  max-width: 33.33%; /* Chiếm khoảng 1/3 chiều rộng trên desktop */
+  min-height: 300px; /* Giảm min-height để tạo hình chữ nhật nằm */
+  border-radius: 10px;
   margin: 20px auto;
-  padding: clamp(1.5rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 2.5vw, 2rem); /* Tối ưu padding */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .login-heading {
@@ -30,7 +34,7 @@
   letter-spacing: 0.025em;
   font-weight: 700;
   text-align: center;
-  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem); /* Giảm margin-bottom */
 }
 
 .login-section {
@@ -38,21 +42,24 @@
   max-width: 600px;
   margin: 0 auto;
   color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1.5vw, 1.5rem); /* Giảm gap giữa các phần tử */
 }
 
 .login-email,
 .login-password {
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: 0;
 }
 
 .login-input {
-  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem); /* Giảm padding trong input */
   border-radius: 1.5rem;
   width: 100%;
-  height: clamp(2rem, 4vw, 2.5rem);
+  height: clamp(2rem, 3.5vw, 2.5rem); /* Giảm chiều cao input */
   border: 1px solid #ccc;
   background: none;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem); /* Giảm font-size */
   font-weight: 500;
   color: rgba(0, 0, 0, 0.9);
   box-sizing: border-box;
@@ -67,19 +74,19 @@
 
 #show-password-img {
   position: absolute;
-  margin-right: clamp(0.8rem, 1.5vw, 1rem);
-  height: 40%;
+  margin-right: clamp(0.8rem, 1.2vw, 1rem); /* Giảm margin-right */
+  height: 40%; /* Giảm kích thước icon */
   cursor: pointer;
 }
 
 .Login-Button-div {
   text-align: center;
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 1.5vw, 1.5rem); /* Giảm margin-top */
 }
 
 .Login-Button {
   color: white;
-  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem); /* Giảm padding button */
   background-color: #07a31f;
   text-transform: none;
   font: inherit;
@@ -87,7 +94,7 @@
   border-radius: 20px;
   border: none;
   font-weight: 500;
-  width: clamp(120px, 50%, 200px);
+  width: clamp(120px, 50%, 200px); /* Giảm chiều rộng button */
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -97,14 +104,14 @@
 
 .gotodifferntlink {
   margin: 0 auto;
-  width: clamp(200px, 80%, 300px);
+  width: clamp(200px, 70%, 300px); /* Giảm chiều rộng container link */
   text-align: center;
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 1.5vw, 1.5rem); /* Giảm margin-top */
   color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: clamp(0.8rem, 1.2vw, 1rem); /* Giảm gap giữa các link */
 }
 
 .login-new-customer,
@@ -112,7 +119,7 @@
   color: #07a31f;
   text-decoration: none;
   font-weight: 500;
-  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  font-size: clamp(0.75rem, 1vw, 0.85rem); /* Giảm font-size */
   transition: color 0.3s ease;
 }
 
@@ -124,70 +131,74 @@
 
 .error-span {
   color: red;
-  margin-top: clamp(0.3rem, 0.5vw, 0.5rem);
+  margin-top: clamp(0.3rem, 0.8vw, 0.5rem); /* Giảm margin-top */
   font-weight: 400;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
-  line-height: 1.25rem;
+  font-size: clamp(0.7rem, 1vw, 0.8rem); /* Giảm font-size */
+  line-height: 1.2rem; /* Giảm line-height */
   display: block;
 }
 
 .login-email-label,
 .login-password-label {
   color: rgba(0, 0, 0, 0.9);
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem); /* Giảm font-size label */
 }
 
 /* Placeholder styling */
 ::placeholder {
   color: rgba(0, 0, 0, 0.6);
   font-weight: 400;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-size: clamp(0.7rem, 1vw, 0.8rem); /* Giảm font-size placeholder */
 }
 
 /* Responsive design for login-specific styles */
+@media (max-width: 1024px) {
+  .back-login {
+    max-width: 90%;
+    min-height: 250px; /* Giảm min-height trên tablet */
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+  .login-heading {
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  }
+  .login-section {
+    gap: clamp(0.8rem, 1.5vw, 1.2rem); /* Giảm gap trên tablet */
+  }
+  .login-input {
+    height: clamp(1.8rem, 3vw, 2.2rem); /* Giảm chiều cao input */
+  }
+  .Login-Button {
+    width: clamp(100px, 60%, 180px); /* Giảm chiều rộng button */
+  }
+  .gotodifferntlink {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.6rem, 1vw, 0.8rem); /* Giảm gap trên tablet */
+  }
+}
+
 @media (max-width: 599px) {
   .back-login {
     max-width: 100%;
     margin: 10px;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    border-radius: 15px;
+    padding: clamp(0.8rem, 2vw, 1.2rem); /* Giảm padding trên điện thoại */
+    min-height: 200px; /* Giảm min-height trên điện thoại */
   }
   .login-heading {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
   }
   .login-section {
     width: 90%;
+    gap: clamp(0.6rem, 1.5vw, 1rem); /* Giảm gap trên điện thoại */
   }
   .login-input {
-    height: clamp(1.8rem, 3.5vw, 2rem);
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    height: clamp(1.6rem, 3vw, 2rem); /* Giảm chiều cao input */
   }
   .Login-Button {
-    width: clamp(100px, 80%, 150px);
-    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    width: clamp(90px, 60%, 150px); /* Giảm chiều rộng button */
   }
   .gotodifferntlink {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 899px) {
-  .back-login {
-    max-width: 90%;
-    margin: 15px auto;
-    padding: clamp(1.2rem, 2vw, 1.8rem);
-  }
-  .login-heading {
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-  }
-  .login-section {
-    width: 85%;
-  }
-  .login-input {
-    height: clamp(2rem, 3.5vw, 2.2rem);
-    font-size: clamp(0.75rem, 1vw, 0.85rem);
+    gap: clamp(0.4rem, 1vw, 0.6rem); /* Giảm gap trên điện thoại */
   }
 }
