@@ -79,9 +79,65 @@
   border-color: #fff;
 }
 
+/* Cập nhật hamburger menu với màu đen */
 .hamburger-menu {
   display: none;
-  position: relative;
+  color: #000; /* Màu đen cho icon */
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.hamburger-menu-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hamburger-menu-wrapper .menu-text {
+  display: none;
+  color: #000; /* Màu đen cho text menu */
+}
+
+/* Dropdown menu styling */
+.hamburger-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff; /* Nền trắng khi mở dropdown */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 200px;
+  padding: 10px 0;
+}
+
+.hamburger-menu-dropdown.active {
+  display: block;
+}
+
+.hamburger-menu-dropdown li {
+  list-style: none;
+  padding: 8px 16px;
+}
+
+.hamburger-menu-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.hamburger-menu-dropdown li a:hover {
+  background-color: #e6f2ff;
+  color: #007bff;
 }
 
 .mybusiness-main {
@@ -315,7 +371,7 @@
 .btn-upload:hover,
 .btn-preview:hover,
 .btn-edit:hover {
-  background-color: #e0e0e0;
+  background-color: #d3d3d3;
 }
 
 .btn-upload span,
@@ -365,6 +421,9 @@
   .nav-links {
     display: none;
   }
+  .hamburger-menu {
+    display: block; /* Hiển thị hamburger menu trên mobile */
+  }
 }
 
 .loading {
@@ -383,14 +442,8 @@
   display: block;
 }
 
-.hamburger-menu-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .hamburger-menu-wrapper .menu-text {
-  display: none;
+  display: block;
 }
 
 @media (max-width: 1024px) {
@@ -419,10 +472,4 @@
 
 .inline-field {
   flex: 1;
-}
-
-.btn-upload:hover,
-.btn-preview:hover,
-.btn-edit:hover {
-  background-color: #d3d3d3;
 }

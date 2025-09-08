@@ -21,6 +21,7 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Sidebar menu links
   const sidebarLinks = {
@@ -249,6 +250,10 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
     }
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   if (isLoading) {
     return <div className="loading">Đang tải...</div>;
   }
@@ -265,8 +270,20 @@ function MyBusiness({ language, setLanguage, headerLinks }) {
             style={{ cursor: 'pointer' }}
           />
           <div className="hamburger-menu-wrapper">
-            <HamburgerMenu language={language} headerLinks={sidebarLinks[language]} />
+            <button className="hamburger-menu" onClick={toggleDropdown}>
+              ☰
+            </button>
             <span className="menu-text">{t.menu}</span>
+            <ul className={`hamburger-menu-dropdown ${isDropdownOpen ? 'active' : ''}`}>
+              {sidebarLinks[language].map((link, index) => (
+                <li key={index}>
+                  <a href={link.path}>
+                    <span className="sidebar-icon">{link.icon}</span>
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           <nav className="nav-links desktop-nav">
             <ul>
