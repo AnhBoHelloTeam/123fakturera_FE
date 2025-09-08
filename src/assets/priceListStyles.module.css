@@ -671,6 +671,12 @@
 }
 
 @media (max-width: 480px) {
+  .priceListContainer {
+    min-height: 80vh; /* Giảm min-height để khung ngắn lại trên điện thoại */
+  }
+  .priceHeader {
+    padding: clamp(5px, 1.5vw, 10px) clamp(10px, 2vw, 15px); /* Giảm padding để header ngắn hơn */
+  }
   .priceSearchBar {
     width: 100%;
   }

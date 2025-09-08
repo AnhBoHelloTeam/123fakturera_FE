@@ -88,7 +88,12 @@ function PriceList({ language, setLanguage }) {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    // Định dạng giá trị số, loại bỏ .00 nếu không cần thiết
+    let formattedValue = value;
+    if (name === 'in_price' || name === 'price' || name === 'in_stock') {
+      formattedValue = value === '' ? '' : parseFloat(value).toString(); // Loại bỏ .00 bằng cách parse và convert lại
+    }
+    setFormData(prev => ({ ...prev, [name]: formattedValue }));
   };
 
   const handleCreateOrUpdate = async () => {
@@ -137,10 +142,10 @@ function PriceList({ language, setLanguage }) {
       id: product.id,
       article_no: product.article_no || '',
       name: product.name || '',
-      in_price: product.in_price || '',
-      price: product.price || '',
+      in_price: product.in_price !== null ? product.in_price.toString().replace(/\.00$/, '') : '',
+      price: product.price.toString().replace(/\.00$/, ''),
       unit: product.unit || '',
-      in_stock: product.in_stock || '',
+      in_stock: product.in_stock !== null ? product.in_stock.toString().replace(/\.00$/, '') : '',
       description: product.description || '',
     });
     setIsFormOpen(true);
@@ -294,6 +299,11 @@ function PriceList({ language, setLanguage }) {
     );
     return filteredProducts.map((item, index) => {
       const isOpen = openMenuIndex === index;
+      // Định dạng giá trị số, loại bỏ .00
+      const formattedInPrice = item.in_price !== null ? parseFloat(item.in_price).toString().replace(/\.00$/, '') : '';
+      const formattedPrice = parseFloat(item.price).toString().replace(/\.00$/, '');
+      const formattedInStock = item.in_stock !== null ? parseInt(item.in_stock).toString().replace(/\.00$/, '') : '';
+
       if (isMobilePortrait || isMobileLandscape) {
         return (
           <tr key={item.id}>
@@ -302,7 +312,7 @@ function PriceList({ language, setLanguage }) {
                 <input type="text" value={item.name} readOnly />
               </div>
             </td>
-            <td><input type="text" value={item.price} readOnly /></td>
+            <td><input type="text" value={formattedPrice} readOnly /></td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
               {isOpen && (
@@ -328,9 +338,9 @@ function PriceList({ language, setLanguage }) {
                 <input type="text" value={item.name} readOnly />
               </div>
             </td>
-            <td><input type="text" value={item.price} readOnly /></td>
+            <td><input type="text" value={formattedPrice} readOnly /></td>
             <td><input type="text" value={item.unit || ''} readOnly /></td>
-            <td><input type="text" value={item.in_stock || ''} readOnly /></td>
+            <td><input type="text" value={formattedInStock} readOnly /></td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
               {isOpen && (
@@ -356,10 +366,10 @@ function PriceList({ language, setLanguage }) {
                 <input type="text" value={item.name} readOnly />
               </div>
             </td>
-            <td><input type="text" value={item.in_price || ''} readOnly /></td>
-            <td><input type="text" value={item.price} readOnly /></td>
+            <td><input type="text" value={formattedInPrice} readOnly /></td>
+            <td><input type="text" value={formattedPrice} readOnly /></td>
             <td><input type="text" value={item.unit || ''} readOnly /></td>
-            <td><input type="text" value={item.in_stock || ''} readOnly /></td>
+            <td><input type="text" value={formattedInStock} readOnly /></td>
             <td><input type="text" value={item.description || ''} readOnly /></td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
