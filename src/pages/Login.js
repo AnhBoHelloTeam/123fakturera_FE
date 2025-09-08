@@ -38,7 +38,7 @@ function Login({ language, setLanguage, headerLinks }) {
       localStorage.setItem('token', response.data.token);
       navigate(response.data.redirect);
     } catch (err) {
-      setError(err.response?.data?.error || 'Đăng nhập thất bại. Vui lòng thử lại.');
+      setError(err.response?.data?.error || 'Login failed. Please try again.');
     }
   };
 

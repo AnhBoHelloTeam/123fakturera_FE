@@ -83,9 +83,9 @@ function Register({ language, setLanguage, headerLinks }) {
         password,
       });
       setError(null);
-      alert('Đăng ký thành công! Vui lòng kiểm tra email để xác minh tài khoản.');
+      alert('Registration successful! Please check your email to verify your account.');
     } catch (err) {
-      setError(err.response?.data?.error || 'Đăng ký thất bại. Vui lòng thử lại.');
+      setError(err.response?.data?.error || 'Registration failed. Please try again.');
     }
   };
 
