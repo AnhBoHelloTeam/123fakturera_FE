@@ -9,19 +9,23 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: calc(100svh - 80px); /* Trừ chiều cao header */
+  min-height: calc(100svh - 80px); 
   box-sizing: border-box;
 }
 
 .back-register {
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-  max-width: 750px;
-  border-radius: 20px;
+  max-width: 33.33%; 
+  min-height: 400px; 
+  border-radius: 30px;
   margin: 20px auto;
-  padding: clamp(1.5rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);
+  padding: clamp(0.8rem, 1.5vw, 1.2rem) clamp(1rem, 2vw, 1.5rem); 
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .register-heading {
@@ -38,20 +42,23 @@
   max-width: 600px;
   margin: 0 auto;
   color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1vw, 1rem); 
 }
 
 .register-input-field {
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: 0; 
 }
 
 .register-input {
-  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.4rem, 0.8vw, 0.6rem); 
   border-radius: 1.5rem;
   width: 100%;
-  height: clamp(2rem, 4vw, 2.5rem);
+  height: clamp(1.8rem, 3vw, 2.2rem); 
   border: 1px solid #ccc;
   background: none;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem); 
   font-weight: 500;
   color: rgba(0, 0, 0, 0.9);
   box-sizing: border-box;
@@ -66,19 +73,19 @@
 
 #show-password-img {
   position: absolute;
-  margin-right: clamp(0.8rem, 1.5vw, 1rem);
-  height: 40%;
+  margin-right: clamp(0.6rem, 1vw, 0.8rem);
+  height: 35%; 
   cursor: pointer;
 }
 
 .Register-Button-div {
   text-align: center;
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: clamp(0.6rem, 1vw, 1rem);
 }
 
 .Register-Button {
   color: white;
-  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.4rem, 0.8vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem); 
   background-color: #07a31f;
   text-transform: none;
   font: inherit;
@@ -86,7 +93,7 @@
   border-radius: 20px;
   border: none;
   font-weight: 500;
-  width: clamp(120px, 50%, 200px);
+  width: clamp(100px, 40%, 180px); 
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -96,21 +103,21 @@
 
 .gotodifferntlink {
   margin: 0 auto;
-  width: clamp(200px, 80%, 300px);
+  width: clamp(180px, 60%, 250px); 
   text-align: center;
-  margin-top: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: clamp(0.6rem, 1vw, 1rem); 
   color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: clamp(0.5rem, 0.8vw, 0.7rem); 
 }
 
 .register-login-link {
   color: #07a31f;
   text-decoration: none;
   font-weight: 500;
-  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  font-size: clamp(0.7rem, 0.9vw, 0.75rem);
   transition: color 0.3s ease;
 }
 
@@ -121,22 +128,22 @@
 
 .error-span {
   color: red;
-  margin-top: clamp(0.3rem, 0.5vw, 0.5rem);
+  margin-top: clamp(0.2rem, 0.5vw, 0.3rem);
   font-weight: 400;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
-  line-height: 1.25rem;
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem); 
+  line-height: 1.1rem;
   display: block;
 }
 
 .register-label {
   color: rgba(0, 0, 0, 0.9);
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
 }
 
 .register-info {
-  font-size: clamp(0.75rem, 1vw, 0.85rem);
-  line-height: 1.5;
-  margin: clamp(0.8rem, 1.5vw, 1rem) 0;
+  font-size: clamp(0.7rem, 0.9vw, 0.75rem); 
+  line-height: 1.2; 
+  margin: clamp(0.4rem, 0.8vw, 0.6rem) 0; 
   color: #555;
   text-align: left;
 }
@@ -145,59 +152,63 @@
 ::placeholder {
   color: rgba(0, 0, 0, 0.6);
   font-weight: 400;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem); 
 }
 
 /* Responsive design for register-specific styles */
+@media (max-width: 1024px) {
+  .back-register {
+    max-width: 90%;
+    min-height: 350px; /* Giảm min-height trên tablet */
+    padding: clamp(0.6rem, 1.5vw, 1rem); /* Giảm padding trên tablet */
+  }
+  .register-heading {
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  }
+  .register-section {
+    gap: clamp(0.5rem, 0.8vw, 0.8rem); /* Giảm gap trên tablet */
+  }
+  .register-input {
+    height: clamp(1.6rem, 2.8vw, 2rem); /* Giảm chiều cao input */
+  }
+  .Register-Button {
+    width: clamp(90px, 50%, 160px); /* Giảm chiều rộng button */
+  }
+  .gotodifferntlink {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.4rem, 0.7vw, 0.6rem); /* Giảm gap trên tablet */
+  }
+  .register-info {
+    font-size: clamp(0.65rem, 0.8vw, 0.7rem); /* Giảm font-size trên tablet */
+  }
+}
+
 @media (max-width: 599px) {
   .back-register {
     max-width: 100%;
     margin: 10px;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    border-radius: 15px;
+    padding: clamp(0.5rem, 1.5vw, 0.8rem); /* Giảm padding trên điện thoại */
+    min-height: 300px; /* Giảm min-height trên điện thoại */
   }
   .register-heading {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
   }
   .register-section {
     width: 90%;
+    gap: clamp(0.4rem, 0.7vw, 0.6rem); /* Giảm gap trên điện thoại */
   }
   .register-input {
-    height: clamp(1.8rem, 3.5vw, 2rem);
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    height: clamp(1.4rem, 2.5vw, 1.8rem); /* Giảm chiều cao input */
   }
   .Register-Button {
-    width: clamp(100px, 80%, 150px);
-    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    width: clamp(80px, 50%, 140px); /* Giảm chiều rộng button */
   }
   .gotodifferntlink {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    gap: clamp(0.3rem, 0.6vw, 0.5rem); /* Giảm gap trên điện thoại */
   }
   .register-info {
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
-  }
-}
-
-@media (min-width: 600px) and (max-width: 899px) {
-  .back-register {
-    max-width: 90%;
-    margin: 15px auto;
-    padding: clamp(1.2rem, 2vw, 1.8rem);
-  }
-  .register-heading {
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-  }
-  .register-section {
-    width: 85%;
-  }
-  .register-input {
-    height: clamp(2rem, 3.5vw, 2.2rem);
-    font-size: clamp(0.75rem, 1vw, 0.85rem);
-  }
-  .register-info {
-    font-size: clamp(0.75rem, 1vw, 0.85rem);
+    font-size: clamp(0.6rem, 0.8vw, 0.65rem); /* Giảm font-size trên điện thoại */
   }
 }

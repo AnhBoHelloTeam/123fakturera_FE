@@ -9,16 +9,16 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: calc(100svh - 80px); /* Trừ chiều cao header */
+  min-height: calc(100svh - 80px); 
   box-sizing: border-box;
 }
 
 .back-login {
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-  max-width: 33.33%; /* Chiếm khoảng 1/3 chiều rộng trên desktop */
-  min-height: 300px; /* Giảm min-height để tạo hình chữ nhật nằm */
-  border-radius: 10px;
+  max-width: 33.33%; 
+  min-height: 300px;
+  border-radius: 30px;
   margin: 20px auto;
   padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 2.5vw, 2rem); /* Tối ưu padding */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
