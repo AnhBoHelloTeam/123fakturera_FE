@@ -1,6 +1,6 @@
 Frontend for 123fakturera Mini App
 This document provides instructions for setting up and running the frontend for the 123fakturera mini app, which includes two main components:
-
+ capnhap ùpate laie
 Terms Page: A replica of https://online.123fakturera.se/terms/, with text content (English and Swedish) fetched from a PostgreSQL database, a functional hamburger menu, and identical scroll, click, and touch behavior across all browsers.
 Price List Page: A simple price list displaying 20 products with editable fields, fetched from and saved to a PostgreSQL database, with responsive design for desktop, tablet, mobile portrait, and landscape.
 
