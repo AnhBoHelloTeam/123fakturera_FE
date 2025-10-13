@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Layout from '../components/Layout';
 import TermsContent from '../components/TermsContent';
+import '../assets/termsStyles.css';
 
 function Terms({ language, setLanguage }) {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Terms({ language, setLanguage }) {
   const [context, setContext] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMobilePortrait, setIsMobilePortrait] = useState(window.innerWidth <= 480);
 
   const headerLinks = {
     sv: [
@@ -28,6 +30,15 @@ function Terms({ language, setLanguage }) {
       { text: 'Contact Us', href: '/Contact-Us' },
     ],
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobilePortrait(window.innerWidth <= 480);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchTerms = async () => {
@@ -55,28 +66,51 @@ function Terms({ language, setLanguage }) {
     window.history.back();
   };
 
-  return (
-    <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
-      <div className="background-fixed" />
-      <div className="container">
-        {loading ? (
-          <p>Đang tải...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <div className="terms-main">
-            <div className="terms-title">{title}</div>
-            <button className="terms-button" onClick={handleClose}>
-              {button}
-            </button>
-            <TermsContent content={context} />
-            <button className="terms-button" onClick={handleClose}>
-              {button}
-            </button>
-          </div>
-        )}
+  // Chỉ hiển thị trên mobile portrait theo yêu cầu SOW
+  if (!isMobilePortrait) {
+    return (
+      <div className="terms-desktop-message">
+        <p>Terms page chỉ hiển thị trên mobile portrait resolution</p>
       </div>
-    </Layout>
+    );
+  }
+
+  return (
+    <div className="terms-page">
+      <div className="terms-background" style={{
+        backgroundImage: 'url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1
+      }}></div>
+      
+      <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
+        <div className="container">
+          {loading ? (
+            <p>Đang tải...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : (
+            <div className="terms-main">
+              <div className="terms-title">{title}</div>
+              <button className="terms-button" onClick={handleClose}>
+                {button}
+              </button>
+              <TermsContent content={context} />
+              <button className="terms-button" onClick={handleClose}>
+                {button}
+              </button>
+            </div>
+          )}
+        </div>
+      </Layout>
+    </div>
   );
 }
 
