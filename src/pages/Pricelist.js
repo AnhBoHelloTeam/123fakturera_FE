@@ -27,6 +27,8 @@ function PriceList({ language, setLanguage }) {
   const [isMobileLandscape, setIsMobileLandscape] = useState(window.innerWidth >= 481 && window.innerWidth < 768);
   const [isMobilePortrait, setIsMobilePortrait] = useState(window.innerWidth <= 480);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [editingCell, setEditingCell] = useState(null); // {rowIndex, field}
+  const [tempValues, setTempValues] = useState({});
 
   useEffect(() => {
     const handleResize = () => {
@@ -309,10 +311,10 @@ function PriceList({ language, setLanguage }) {
           <tr key={item.id}>
             <td>
               <div className={styles.priceCellContent}>
-                <input type="text" value={item.name} readOnly />
+                {renderEditableCell(index, 'name', item.name)}
               </div>
             </td>
-            <td><input type="text" value={formattedPrice} readOnly /></td>
+            <td>{renderEditableCell(index, 'price', formattedPrice, 'number')}</td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
               {isOpen && (
@@ -330,17 +332,17 @@ function PriceList({ language, setLanguage }) {
           <tr key={item.id}>
             <td>
               <div className={styles.priceCellContent}>
-                <input type="text" value={item.article_no} readOnly />
+                {renderEditableCell(index, 'article_no', item.article_no)}
               </div>
             </td>
             <td>
               <div className={styles.priceCellContent}>
-                <input type="text" value={item.name} readOnly />
+                {renderEditableCell(index, 'name', item.name)}
               </div>
             </td>
-            <td><input type="text" value={formattedPrice} readOnly /></td>
-            <td><input type="text" value={item.unit || ''} readOnly /></td>
-            <td><input type="text" value={formattedInStock} readOnly /></td>
+            <td>{renderEditableCell(index, 'price', formattedPrice, 'number')}</td>
+            <td>{renderEditableCell(index, 'unit', item.unit || '')}</td>
+            <td>{renderEditableCell(index, 'in_stock', formattedInStock, 'number')}</td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
               {isOpen && (
@@ -358,19 +360,19 @@ function PriceList({ language, setLanguage }) {
           <tr key={item.id}>
             <td>
               <div className={styles.priceCellContent}>
-                <input type="text" value={item.article_no} readOnly />
+                {renderEditableCell(index, 'article_no', item.article_no)}
               </div>
             </td>
             <td>
               <div className={styles.priceCellContent}>
-                <input type="text" value={item.name} readOnly />
+                {renderEditableCell(index, 'name', item.name)}
               </div>
             </td>
-            <td><input type="text" value={formattedInPrice} readOnly /></td>
-            <td><input type="text" value={formattedPrice} readOnly /></td>
-            <td><input type="text" value={item.unit || ''} readOnly /></td>
-            <td><input type="text" value={formattedInStock} readOnly /></td>
-            <td><input type="text" value={item.description || ''} readOnly /></td>
+            <td>{renderEditableCell(index, 'in_price', formattedInPrice, 'number')}</td>
+            <td>{renderEditableCell(index, 'price', formattedPrice, 'number')}</td>
+            <td>{renderEditableCell(index, 'unit', item.unit || '')}</td>
+            <td>{renderEditableCell(index, 'in_stock', formattedInStock, 'number')}</td>
+            <td>{renderEditableCell(index, 'description', item.description || '')}</td>
             <td style={{ position: 'relative' }}>
               <button className={styles.priceMoreOptions} onClick={() => toggleDropdown(index)}>...</button>
               {isOpen && (
@@ -396,12 +398,96 @@ function PriceList({ language, setLanguage }) {
     setIsLanguageDropdownOpen(false);
   };
 
+  const handleCellClick = (rowIndex, field, currentValue) => {
+    setEditingCell({ rowIndex, field });
+    setTempValues({ ...tempValues, [`${rowIndex}-${field}`]: currentValue });
+  };
+
+  const handleCellChange = (rowIndex, field, value) => {
+    setTempValues({ ...tempValues, [`${rowIndex}-${field}`]: value });
+  };
+
+  const handleCellSave = async (rowIndex, field) => {
+    const product = products[rowIndex];
+    const newValue = tempValues[`${rowIndex}-${field}`];
+    
+    if (newValue === undefined || newValue === product[field]) {
+      setEditingCell(null);
+      return;
+    }
+
+    const token = localStorage.getItem('token');
+    try {
+      const updateData = { ...product };
+      updateData[field] = field === 'in_price' || field === 'price' ? parseFloat(newValue) : 
+                         field === 'in_stock' ? parseInt(newValue) : newValue;
+
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${product.id}`, updateData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Update local state
+      const updatedProducts = [...products];
+      updatedProducts[rowIndex] = { ...product, [field]: updateData[field] };
+      setProducts(updatedProducts);
+      
+      setEditingCell(null);
+      setSuccess(language === 'sv' ? 'Produkt uppdaterad framgångsrikt.' : 'Sản phẩm được cập nhật thành công.');
+      setTimeout(() => setSuccess(null), 3000);
+    } catch (err) {
+      setError(err.response?.data?.error || (language === 'sv' ? 'Misslyckades att uppdatera produkt.' : 'Không thể cập nhật sản phẩm.'));
+    }
+  };
+
+  const handleCellCancel = () => {
+    setEditingCell(null);
+    setTempValues({});
+  };
+
   const languages = [
     { code: 'en', name: 'English', flag: 'https://storage.123fakturere.no/public/flags/GB.png' },
     { code: 'sv', name: 'Swedish', flag: 'https://storage.123fakturere.no/public/flags/SE.png' },
   ];
 
   const currentLanguage = languages.find(lang => lang.code === language);
+
+  const renderEditableCell = (rowIndex, field, value, type = 'text') => {
+    const isEditing = editingCell?.rowIndex === rowIndex && editingCell?.field === field;
+    const tempValue = tempValues[`${rowIndex}-${field}`] !== undefined ? tempValues[`${rowIndex}-${field}`] : value;
+
+    if (isEditing) {
+      return (
+        <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+          <input
+            type={type}
+            value={tempValue}
+            onChange={(e) => handleCellChange(rowIndex, field, e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleCellSave(rowIndex, field);
+              } else if (e.key === 'Escape') {
+                handleCellCancel();
+              }
+            }}
+            autoFocus
+            style={{ width: '100%', padding: '2px' }}
+          />
+          <button onClick={() => handleCellSave(rowIndex, field)} style={{ fontSize: '12px', padding: '2px 5px' }}>✓</button>
+          <button onClick={handleCellCancel} style={{ fontSize: '12px', padding: '2px 5px' }}>✗</button>
+        </div>
+      );
+    }
+
+    return (
+      <input
+        type={type}
+        value={value}
+        readOnly
+        onClick={() => handleCellClick(rowIndex, field, value)}
+        style={{ cursor: 'pointer', width: '100%' }}
+      />
+    );
+  };
 
   return (
     <div className={styles.priceListContainer}>
