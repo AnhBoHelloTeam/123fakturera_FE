@@ -47,13 +47,26 @@ function Login({ language, setLanguage, headerLinks }) {
   };
 
   return (
-    <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
-      <div className="background-fixed" />
-      <div className="container">
-        <div className="login-content-root">
-          <div className="back-login">
-            <form onSubmit={handleSubmit} noValidate autoComplete="off">
-              <h2 className="login-heading">{formTitles[language]}</h2>
+    <div className="login-page">
+      <div className="login-background" style={{
+        backgroundImage: 'url(https://storage.123fakturera.se/public/wallpapers/sverige43.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1
+      }}></div>
+      
+      <Layout language={language} setLanguage={setLanguage} headerLinks={headerLinks}>
+        <div className="container">
+          <div className="login-content-root">
+            <div className="back-login">
+              <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                <h2 className="login-heading">{formTitles[language]}</h2>
               <section className="login-section">
                 <div className="login-email">
                   <div>
@@ -128,11 +141,12 @@ function Login({ language, setLanguage, headerLinks }) {
                   {formLinks[language].forgot}
                 </a>
               </section>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   );
 }
 
