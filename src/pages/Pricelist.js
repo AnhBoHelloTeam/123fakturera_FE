@@ -494,6 +494,12 @@ function PriceList({ language, setLanguage }) {
       <header className={styles.priceHeader}>
         <div className={styles.priceHeaderLeft}>
           <button className={styles.menuIcon} onClick={toggleMenu}>☰</button>
+          <img
+            src="https://storage.123fakturera.se/public/icons/diamond.png"
+            alt="Logo"
+            className={styles.priceLogo}
+            style={{ width: '40px', height: '40px', marginLeft: '10px' }}
+          />
           {isDesktop && (
             <div>
               <div className={styles.priceUserProfile}>
