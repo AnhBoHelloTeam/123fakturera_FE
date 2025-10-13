@@ -12,7 +12,6 @@ function Terms({ language, setLanguage }) {
   const [context, setContext] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isMobilePortrait, setIsMobilePortrait] = useState(window.innerWidth <= 480);
 
   const headerLinks = {
     sv: [
@@ -31,14 +30,6 @@ function Terms({ language, setLanguage }) {
     ],
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobilePortrait(window.innerWidth <= 480);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const fetchTerms = async () => {
@@ -66,14 +57,7 @@ function Terms({ language, setLanguage }) {
     window.history.back();
   };
 
-  // Chỉ hiển thị trên mobile portrait theo yêu cầu SOW
-  if (!isMobilePortrait) {
-    return (
-      <div className="terms-desktop-message">
-        <p>Terms page chỉ hiển thị trên mobile portrait resolution</p>
-      </div>
-    );
-  }
+  // Terms page hiển thị trên tất cả màn hình
 
   return (
     <div className="terms-page">
