@@ -84,13 +84,11 @@ function Register({ language, setLanguage, headerLinks }) {
       });
       setError(null);
       
-      // Show success message and redirect to verification page
-      alert('Registration successful! Please check your email to verify your account.');
-      
-      // Redirect to login page with a message about email verification
-      navigate('/login', { 
+      // Redirect to email verification page
+      navigate('/verify-email', { 
         state: { 
-          message: 'Registration successful! Please check your email and click the verification link to activate your account.' 
+          email: email,
+          message: 'Registration successful! Please check your email to verify your account.' 
         } 
       });
     } catch (err) {

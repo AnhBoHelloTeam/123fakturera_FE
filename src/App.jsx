@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import LanguageProvider from './components/LanguageProvider';
 import Verify from './components/Verify';
+import VerifyEmail from './pages/VerifyEmail';
 import MyBusiness from './components/MyBusiness';
 import SelectLanguage from './pages/SelectLanguage';
 import PriceList from './pages/Pricelist';
@@ -30,6 +31,7 @@ function App() {
               <Route path="/login" element={<Login language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/register" element={<Register language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/verify" element={<Verify />} />
+              <Route path="/verify-email" element={<VerifyEmail language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/select-language" element={<SelectLanguage setLanguage={setLanguage} />} />
               <Route path="/mybusiness" element={<MyBusiness language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
               <Route path="/price-list" element={<PriceList language={language} setLanguage={setLanguage} />} />
