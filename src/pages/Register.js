@@ -72,7 +72,7 @@ function Register({ language, setLanguage, headerLinks }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, {
         companyName,
         contactPerson,
         address,
@@ -83,7 +83,16 @@ function Register({ language, setLanguage, headerLinks }) {
         password,
       });
       setError(null);
+      
+      // Show success message and redirect to verification page
       alert('Registration successful! Please check your email to verify your account.');
+      
+      // Redirect to login page with a message about email verification
+      navigate('/login', { 
+        state: { 
+          message: 'Registration successful! Please check your email and click the verification link to activate your account.' 
+        } 
+      });
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed. Please try again.');
     }

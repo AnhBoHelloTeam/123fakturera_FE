@@ -1,15 +1,26 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../components/Layout';
 import '../assets/loginStyles.css';
 
 function Login({ language, setLanguage, headerLinks }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    // Check for success message from registration
+    if (location.state?.message) {
+      setSuccessMessage(location.state.message);
+      // Clear the state to prevent showing the message again on refresh
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location, navigate]);
 
   const formTitles = {
     sv: 'Logga in',
@@ -67,6 +78,20 @@ function Login({ language, setLanguage, headerLinks }) {
             <div className="back-login">
               <form onSubmit={handleSubmit} noValidate autoComplete="off">
                 <h2 className="login-heading">{formTitles[language]}</h2>
+                
+                {successMessage && (
+                  <div className="success-message" style={{
+                    backgroundColor: '#d4edda',
+                    color: '#155724',
+                    padding: '10px',
+                    borderRadius: '4px',
+                    marginBottom: '15px',
+                    border: '1px solid #c3e6cb'
+                  }}>
+                    {successMessage}
+                  </div>
+                )}
+                
               <section className="login-section">
                 <div className="login-email">
                   <div>
