@@ -10,6 +10,10 @@ import Verify from './components/Verify';
 import MyBusiness from './components/MyBusiness';
 import SelectLanguage from './pages/SelectLanguage';
 import PriceList from './pages/Pricelist';
+import Invoices from './pages/Invoices';
+import Customers from './pages/Customers';
+import OurCustomers from './pages/OurCustomers';
+import OtherPrograms from './pages/OtherPrograms';
 import './assets/styles.css';
 
 function App() {
@@ -28,7 +32,11 @@ function App() {
               <Route path="/verify" element={<Verify />} />
               <Route path="/select-language" element={<SelectLanguage setLanguage={setLanguage} />} />
               <Route path="/mybusiness" element={<MyBusiness language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
-              <Route path="/price-list" element={<PriceList language={language} setLanguage={setLanguage} />} /> {/* Add this new route */}
+              <Route path="/price-list" element={<PriceList language={language} setLanguage={setLanguage} />} />
+              <Route path="/invoices" element={<Invoices language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
+              <Route path="/customers" element={<Customers language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
+              <Route path="/our-customers" element={<OurCustomers language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
+              <Route path="/other-programs" element={<OtherPrograms language={language} setLanguage={setLanguage} headerLinks={headerLinks} />} />
 
             </Routes>
           </div>

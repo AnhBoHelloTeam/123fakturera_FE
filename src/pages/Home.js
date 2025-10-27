@@ -67,12 +67,12 @@ function Home() {
 
   const headerLinks = [
     { text: 'Hem', href: '/' },
-    { text: 'Beställ', href: '/Order' },
-    { text: 'Våra Kunder', href: '/Our-Customers' },
-    { text: 'Om oss', href: '/About-us' },
-    { text: 'Kontakta oss', href: '/Contact-Us' },
-    { text: 'Andra Program', href: '/Other-Programs' },
-    { text: 'Mer', href: '/More' },
+    { text: 'Beställ', href: '/register' },
+    { text: 'Våra Kunder', href: '/our-customers' },
+    { text: 'Om oss', href: '/about' },
+    { text: 'Kontakta oss', href: '/contact' },
+    { text: 'Andra Program', href: '/other-programs' },
+    { text: 'Mer', href: '/more' },
   ];
 
   useEffect(() => {
