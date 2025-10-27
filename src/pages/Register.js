@@ -84,13 +84,12 @@ function Register({ language, setLanguage, headerLinks }) {
       });
       setError(null);
       
-      // Redirect to email verification page
-      navigate('/verify-email', { 
-        state: { 
-          email: email,
-          message: 'Registration successful! Please check your email to verify your account.' 
-        } 
-      });
+          // Redirect to login page
+          navigate('/login', {
+            state: {
+              message: 'Registration successful! You can now login.'
+            }
+          });
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed. Please try again.');
     }
